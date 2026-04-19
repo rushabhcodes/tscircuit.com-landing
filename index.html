@@ -358,8 +358,6 @@
             position: relative;
             height: 100%;
             min-height: 210px;
-            display: grid;
-            grid-template-rows: 40px 1fr;
             background:
                 linear-gradient(180deg, rgba(255, 255, 255, .035), transparent 24%),
                 #0E0E0E;
@@ -378,32 +376,11 @@
             box-shadow: inset 0 0 0 1px rgba(159, 199, 232, .35);
         }
 
-        .editor-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            background: rgba(255, 255, 255, .02);
-        }
-
-        .editor-dots {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .editor-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .18);
-        }
-
         .editor-body {
             position: relative;
             display: grid;
             grid-template-columns: 44px 1fr;
+            height: 100%;
             min-height: 0;
             overflow: hidden;
         }
@@ -988,15 +965,6 @@
                 </div>
                 <div class="hero-stack">
                     <div class="code editor-shell">
-                        <div class="editor-bar">
-                            <div class="editor-dots" aria-hidden="true">
-                                <span class="editor-dot"></span>
-                                <span class="editor-dot"></span>
-                                <span class="editor-dot"></span>
-                            </div>
-                            <div class="subhead">editable hero sample</div>
-                            <div class="head">blinky.tsx</div>
-                        </div>
                         <div class="editor-body">
                             <pre id="hero-code-gutter" class="editor-gutter"
                                 aria-hidden="true"><span id="hero-code-gutter-track" class="editor-gutter-track"></span></pre>
@@ -1012,28 +980,25 @@
                     <div class="render-stage" style="height:100%">
                         <span id="hero-render-status" class="status" role="status" aria-live="polite">syncing</span>
                         <div class="render-tabs" role="tablist" aria-label="Preview view">
-                            <button type="button" class="render-tab active" id="preview-tab-pcb" data-view="pcb"
-                                role="tab" aria-selected="true" aria-controls="preview-panel-pcb" tabindex="0">PCB</button>
+                            <button type="button" class="render-tab" id="preview-tab-pcb" data-view="pcb"
+                                role="tab" aria-selected="false" aria-controls="preview-panel-pcb" tabindex="-1">PCB</button>
                             <button type="button" class="render-tab" id="preview-tab-schematic" data-view="schematic"
                                 role="tab" aria-selected="false" aria-controls="preview-panel-schematic"
                                 tabindex="-1">SCH</button>
-                            <button type="button" class="render-tab" id="preview-tab-3d" data-view="3d" role="tab"
-                                aria-selected="false" aria-controls="preview-panel-3d" tabindex="-1">3D</button>
+                            <button type="button" class="render-tab active" id="preview-tab-3d" data-view="3d" role="tab"
+                                aria-selected="true" aria-controls="preview-panel-3d" tabindex="0">3D</button>
                         </div>
                         <div id="preview-panel-pcb" class="render-panel" role="tabpanel"
-                            aria-labelledby="preview-tab-pcb">
+                            aria-labelledby="preview-tab-pcb" hidden>
                             <img id="hero-render-image-pcb" alt="Live PCB render from svg.tscircuit.com">
-                            <span id="hero-render-tag-pcb" class="tag">// live pcb render · svg.tscircuit.com</span>
                         </div>
                         <div id="preview-panel-schematic" class="render-panel" role="tabpanel"
                             aria-labelledby="preview-tab-schematic" hidden>
                             <img id="hero-render-image-schematic" alt="Live schematic render from svg.tscircuit.com">
-                            <span id="hero-render-tag-schematic" class="tag">// live sch render · svg.tscircuit.com</span>
                         </div>
                         <div id="preview-panel-3d" class="render-panel" role="tabpanel"
-                            aria-labelledby="preview-tab-3d" hidden>
+                            aria-labelledby="preview-tab-3d">
                             <img id="hero-render-image-3d" alt="Live 3D render from svg.tscircuit.com">
-                            <span id="hero-render-tag-3d" class="tag">// live 3d render · svg.tscircuit.com</span>
                         </div>
                     </div>
                 </div>
@@ -1266,15 +1231,12 @@
             const renderViewConfig = {
                 pcb: {
                     alt: "Live PCB render from svg.tscircuit.com",
-                    tag: "// live pcb render · svg.tscircuit.com",
                 },
                 schematic: {
                     alt: "Live schematic render from svg.tscircuit.com",
-                    tag: "// live sch render · svg.tscircuit.com",
                 },
                 "3d": {
                     alt: "Live 3D render from svg.tscircuit.com",
-                    tag: "// live 3d render · svg.tscircuit.com",
                     format: "png",
                 },
             }
@@ -1285,14 +1247,13 @@
                         tab: document.querySelector(`.render-tab[data-view="${view}"]`),
                         panel: document.getElementById(`preview-panel-${view}`),
                         image: document.getElementById(`hero-render-image-${view}`),
-                        tag: document.getElementById(`hero-render-tag-${view}`),
                     },
                 ])
             )
             const renderViewOrder = renderTabs
                 .map((tab) => tab.dataset.view)
                 .filter((view) => Boolean(view && renderViewConfig[view]))
-            let currentView = "pcb"
+            let currentView = "3d"
 
             const escapeHtml = (value) =>
                 value
@@ -1392,7 +1353,6 @@
                 }
 
                 activePanel.image.alt = viewConfig.alt
-                activePanel.tag.textContent = viewConfig.tag
                 return activePanel
             }
 
