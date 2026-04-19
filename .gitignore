@@ -1,1 +1,7 @@
 .codex
+node_modules/
+.DS_Store
+.env
+dist/
+build/
+*.log
