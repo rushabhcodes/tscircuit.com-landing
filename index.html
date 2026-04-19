@@ -213,6 +213,21 @@
             border-radius: 2px
         }
 
+        .btn .icon {
+            width: 14px;
+            height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        .btn .icon svg {
+            width: 14px;
+            height: 14px;
+            display: block;
+        }
+
         .hand {
             font-family: 'Caveat', cursive;
             font-weight: 600
@@ -950,7 +965,14 @@
                         JLCPCB in a single command.
                     </p>
                     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-                        <a class="btn accent" href="https://docs.tscircuit.com/category/command-line-interface">npm create tscircuit@latest</a>
+                        <button
+                            type="button"
+                            class="btn accent"
+                            id="hero-install-copy"
+                            data-copy-text="npm install -g tscircuit"
+                            aria-label="Copy npm install -g tscircuit"
+                            title="Copy npm install -g tscircuit"
+                        ><span>npm install -g tscircuit</span><span id="hero-install-copy-icon" class="icon" aria-hidden="true"></span></button>
                         <a class="btn" href="https://docs.tscircuit.com/">Read the docs →</a>
                         <a
                             class="mono muted"
@@ -1275,8 +1297,31 @@ export default () => {
             const editorHighlightTrack = document.getElementById("hero-code-highlight-track")
             const renderStatus = document.getElementById("hero-render-status")
             const renderTabs = [...document.querySelectorAll(".render-tab")]
+            const heroInstallCopyButton = document.getElementById("hero-install-copy")
+            const heroInstallCopyIcon = document.getElementById("hero-install-copy-icon")
             const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
+            const installCommand = heroInstallCopyButton?.dataset.copyText ?? "npm install -g tscircuit"
             const playgroundUrl = "https://tscircuit.com/playground"
+            let installCopyResetTimeout = null
+            const installCopyIcons = {
+                idle: `
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <rect x="5" y="3" width="8" height="10" rx="1.5"></rect>
+                        <path d="M3.5 11.5V5.5C3.5 4.67157 4.17157 4 5 4"></path>
+                    </svg>
+                `,
+                success: `
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path d="M3.5 8.5 6.5 11.5 12.5 5.5"></path>
+                    </svg>
+                `,
+                error: `
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path d="M5 5 11 11"></path>
+                        <path d="M11 5 5 11"></path>
+                    </svg>
+                `,
+            }
             const renderViewConfig = {
                 pcb: {
                     alt: "Live PCB render from svg.tscircuit.com",
@@ -1466,9 +1511,46 @@ export default () => {
                 window.open(playgroundUrl, "_blank", "noopener,noreferrer")
             }
 
+            const setHeroInstallCopyState = (state) => {
+                if (!heroInstallCopyButton || !heroInstallCopyIcon) return
+
+                const labels = {
+                    idle: "Copy npm install -g tscircuit",
+                    success: "Copied npm install -g tscircuit",
+                    error: "Copy failed for npm install -g tscircuit",
+                }
+
+                heroInstallCopyButton.setAttribute("aria-label", labels[state] ?? labels.idle)
+                heroInstallCopyButton.title = labels[state] ?? labels.idle
+                heroInstallCopyIcon.innerHTML = installCopyIcons[state] ?? installCopyIcons.idle
+            }
+
+            const copyTextToClipboard = async (value) => {
+                if (navigator.clipboard?.writeText) {
+                    await navigator.clipboard.writeText(value)
+                    return
+                }
+
+                const temporaryTextarea = document.createElement("textarea")
+                temporaryTextarea.value = value
+                temporaryTextarea.setAttribute("readonly", "")
+                temporaryTextarea.style.position = "absolute"
+                temporaryTextarea.style.left = "-9999px"
+                document.body.appendChild(temporaryTextarea)
+                temporaryTextarea.select()
+
+                const didCopy = document.execCommand("copy")
+                temporaryTextarea.remove()
+
+                if (!didCopy) {
+                    throw new Error("Clipboard copy failed")
+                }
+            }
+
             const debouncedPreviewUpdate = debounce(updatePreview, 350)
 
             editorInput.value = defaultHeroCode
+            setHeroInstallCopyState("idle")
             syncEditor()
             updatePreview()
 
@@ -1482,6 +1564,19 @@ export default () => {
             })
             editorInput.addEventListener("blur", () => {
                 editorShell.classList.remove("focused")
+            })
+            heroInstallCopyButton?.addEventListener("click", async () => {
+                try {
+                    await copyTextToClipboard(installCommand)
+                    setHeroInstallCopyState("success")
+                } catch (error) {
+                    setHeroInstallCopyState("error")
+                }
+
+                window.clearTimeout(installCopyResetTimeout)
+                installCopyResetTimeout = window.setTimeout(() => {
+                    setHeroInstallCopyState("idle")
+                }, 1800)
             })
             editorInput.addEventListener("keydown", (event) => {
                 const { selectionStart, selectionEnd, value } = editorInput
