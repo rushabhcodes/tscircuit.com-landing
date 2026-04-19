@@ -952,15 +952,21 @@
                     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
                         <a class="btn accent" href="https://docs.tscircuit.com/category/command-line-interface">npm create tscircuit@latest</a>
                         <a class="btn" href="https://docs.tscircuit.com/">Read the docs →</a>
-                        <span class="mono muted" style="font-size:11px">⌘K to try in browser</span>
+                        <a
+                            class="mono muted"
+                            id="hero-browser-shortcut"
+                            href="https://tscircuit.com/playground"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-keyshortcuts="Meta+K Control+K"
+                            style="font-size:11px;text-decoration:none"
+                        >⌘K to try in browser</a>
                     </div>
                     <div
                         style="display:flex;gap:28px;margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">
-                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">12,400+</b><br>GH stars
-                        </div>
-                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">40k</b><br>boards/mo</div>
-                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">850</b><br>contributors
-                        </div>
+                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">2.1k</b><br>Repo stars</div>
+                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">289</b><br>Public repos</div>
+                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">209</b><br>GH followers</div>
                     </div>
                 </div>
                 <div class="hero-stack">
@@ -1269,6 +1275,8 @@ export default () => {
             const editorHighlightTrack = document.getElementById("hero-code-highlight-track")
             const renderStatus = document.getElementById("hero-render-status")
             const renderTabs = [...document.querySelectorAll(".render-tab")]
+            const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
+            const playgroundUrl = "https://tscircuit.com/playground"
             const renderViewConfig = {
                 pcb: {
                     alt: "Live PCB render from svg.tscircuit.com",
@@ -1454,6 +1462,10 @@ export default () => {
                 }
             }
 
+            const openPlayground = () => {
+                window.open(playgroundUrl, "_blank", "noopener,noreferrer")
+            }
+
             const debouncedPreviewUpdate = debounce(updatePreview, 350)
 
             editorInput.value = defaultHeroCode
@@ -1499,6 +1511,33 @@ export default () => {
                     syncEditor()
                     debouncedPreviewUpdate()
                 }
+            })
+            heroBrowserShortcut?.addEventListener("click", (event) => {
+                event.preventDefault()
+                openPlayground()
+            })
+            window.addEventListener("keydown", (event) => {
+                if (event.key.toLowerCase() !== "k") return
+                if (!event.metaKey && !event.ctrlKey) return
+                if (event.altKey) return
+
+                const target = event.target
+                const isEditableTarget =
+                    target instanceof HTMLElement &&
+                    (
+                        target.isContentEditable ||
+                        (
+                            (target.tagName === "INPUT" ||
+                                target.tagName === "TEXTAREA" ||
+                                target.tagName === "SELECT") &&
+                            target !== editorInput
+                        )
+                    )
+
+                if (isEditableTarget) return
+
+                event.preventDefault()
+                openPlayground()
             })
             Object.entries(renderPanels).forEach(([view, panelConfig]) => {
                 panelConfig.image.addEventListener("load", () => {
