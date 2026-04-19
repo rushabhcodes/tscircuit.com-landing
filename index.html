@@ -76,6 +76,7 @@
             --line-2: #B8B4AC;
             --accent: #C04545;
             --hi: #FFF2A8;
+            --content-max: 1280px;
         }
 
         * {
@@ -96,11 +97,19 @@
         }
 
         .nav {
+            padding: 18px clamp(24px, 6vw, 96px);
+            border-bottom: 1.5px dashed var(--line-2);
+        }
+
+        .shell {
+            width: min(100%, var(--content-max));
+            margin: 0 auto;
+        }
+
+        .nav-shell {
             display: flex;
             align-items: center;
             gap: 24px;
-            padding: 18px clamp(24px, 6vw, 96px);
-            border-bottom: 1.5px dashed var(--line-2);
         }
 
         .logo {
@@ -608,6 +617,11 @@
             border-bottom: 1.5px dashed var(--line-2)
         }
 
+        .section>* {
+            width: min(100%, var(--content-max));
+            margin: 0 auto;
+        }
+
         .section:last-child {
             border-bottom: none
         }
@@ -634,17 +648,27 @@
             margin: 0 0 28px
         }
 
+        .trust-strip {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            overflow: hidden;
+        }
+
         /* Footer */
         .foot {
             padding: 40px clamp(24px, 6vw, 96px) 28px;
             background: #F2EEE4;
+            border-top: 1.5px solid var(--ink);
+        }
+
+        .foot-shell {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
             gap: 28px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             color: var(--ink-2);
-            border-top: 1.5px solid var(--ink);
         }
 
         .foot h5 {
@@ -689,7 +713,7 @@
         .hero-grid {
             display: grid;
             grid-template-columns: 1.05fr 1fr;
-            gap: 32px;
+            gap: 56px;
             align-items: center;
         }
 
@@ -761,18 +785,21 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .foot {
+            .foot-shell {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
         @media (max-width: 820px) {
             .nav {
+                padding: 16px 20px;
+            }
+
+            .nav-shell {
                 display: grid;
                 grid-template-columns: minmax(0, 1fr) auto;
                 align-items: center;
                 gap: 14px;
-                padding: 16px 20px;
             }
 
             .nav .grow {
@@ -814,13 +841,13 @@
                 height: 220px !important;
             }
 
-            .foot {
+            .foot-shell {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 640px) {
-            .nav {
+            .nav-shell {
                 display: grid;
                 grid-template-columns: 1fr auto;
                 align-items: center;
@@ -874,15 +901,18 @@
                 min-height: 0;
             }
 
-            .foot {
+            .foot-shell {
                 gap: 20px;
             }
         }
 
         @media (max-width: 420px) {
             .nav {
-                gap: 8px;
                 padding: 14px 18px;
+            }
+
+            .nav-shell {
+                gap: 8px;
             }
 
             .logo {
@@ -909,22 +939,24 @@
     </style>
 </head>
 
-<body>
+    <body>
     <!-- nav -->
     <nav class="nav" aria-label="Primary">
-        <a class="logo" href="https://tscircuit.com"><span class="sq"></span>tscircuit</a>
-        <ul class="nav-links">
-            <li><a href="https://tscircuit.com">Product</a></li>
-            <li><a href="https://tscircuit.com/playground">Playground</a></li>
-            <li><a href="https://docs.tscircuit.com/">Docs</a></li>
-            <li><a href="https://tscircuit.com/trending">Gallery</a></li>
-            <li><a href="https://tscircuit.com/about">About</a></li>
-        </ul>
-        <div class="grow"></div>
-        <div class="nav-actions">
-            <a class="btn ghost" href="https://github.com/tscircuit/tscircuit">★ 12.4k on GitHub</a>
-            <a class="btn" href="https://tscircuit.com/login">Sign in</a>
-            <a class="btn primary" href="mailto:contact@tscircuit.com?subject=Book%20a%20demo">Book a demo →</a>
+        <div class="shell nav-shell">
+            <a class="logo" href="https://tscircuit.com"><span class="sq"></span>tscircuit</a>
+            <ul class="nav-links">
+                <li><a href="https://tscircuit.com">Product</a></li>
+                <li><a href="https://tscircuit.com/playground">Playground</a></li>
+                <li><a href="https://docs.tscircuit.com/">Docs</a></li>
+                <li><a href="https://tscircuit.com/trending">Gallery</a></li>
+                <li><a href="https://tscircuit.com/about">About</a></li>
+            </ul>
+            <div class="grow"></div>
+            <div class="nav-actions">
+                <a class="btn ghost" href="https://github.com/tscircuit/tscircuit">★ 12.4k on GitHub</a>
+                <a class="btn" href="https://tscircuit.com/login">Sign in</a>
+                <a class="btn primary" href="mailto:contact@tscircuit.com?subject=Book%20a%20demo">Book a demo →</a>
+            </div>
         </div>
     </nav>
     <main id="main-content">
@@ -1010,95 +1042,99 @@
 
         <!-- Trust strip -->
         <section aria-label="Hardware teams building with tscircuit"
-            style="padding:18px clamp(24px,6vw,96px);border-top:1.5px dashed var(--line-2);border-bottom:1.5px dashed var(--line-2);display:flex;align-items:center;gap:28px;overflow:hidden">
-            <span class="mono muted" style="font-size:11px;white-space:nowrap">Hardware teams building with tscircuit
-                →</span>
-            <div style="display:flex;gap:40px;flex:1;justify-content:space-around;opacity:.7">
-                <span class="hand" style="font-size:22px">◇ company</span>
-                <span class="hand" style="font-size:22px">△ lab</span>
-                <span class="hand" style="font-size:22px">○ robotics.co</span>
-                <span class="hand" style="font-size:22px">▢ satellites</span>
-                <span class="hand" style="font-size:22px">◈ wearable</span>
-                <span class="hand" style="font-size:22px">※ industrial</span>
+            style="padding:18px clamp(24px,6vw,96px);border-top:1.5px dashed var(--line-2);border-bottom:1.5px dashed var(--line-2);">
+            <div class="shell trust-strip">
+                <span class="mono muted" style="font-size:11px;white-space:nowrap">Hardware teams building with tscircuit
+                    →</span>
+                <div style="display:flex;gap:40px;flex:1;justify-content:space-around;opacity:.7">
+                    <span class="hand" style="font-size:22px">◇ company</span>
+                    <span class="hand" style="font-size:22px">△ lab</span>
+                    <span class="hand" style="font-size:22px">○ robotics.co</span>
+                    <span class="hand" style="font-size:22px">▢ satellites</span>
+                    <span class="hand" style="font-size:22px">◈ wearable</span>
+                    <span class="hand" style="font-size:22px">※ industrial</span>
+                </div>
             </div>
         </section>
 
         <!-- Feature grid -->
         <section class="section" aria-labelledby="features-title">
-            <div class="eyebrow">Why teams switch</div>
-            <h2 id="features-title">Everything your EE team needs, as code.</h2>
-            <p class="sub">Built for hardware startups who move at software speed. Every feature composable,
-                inspectable, diffable in a PR.</p>
+            <div class="feature-shell">
+                <div class="eyebrow">Why teams switch</div>
+                <h2 id="features-title">Everything your EE team needs, as code.</h2>
+                <p class="sub">Built for hardware startups who move at software speed. Every feature composable,
+                    inspectable, diffable in a PR.</p>
 
-            <div class="row feature-grid">
-                <!-- feature card template -->
-                <div class="feature-card">
-                    <div class="mono muted" style="font-size:10px;letter-spacing:.12em">01 · REACT</div>
-                    <h3 style="margin:8px 0 6px;font-size:18px">JSX components for circuits</h3>
-                    <p style="margin:0;color:var(--ink-2);font-size:13px">Compose boards the way you compose UI. Props,
-                        children, hooks — but for resistors.</p>
-                    <div class="code"
-                        style="height:150px;margin-top:14px;padding:12px 14px;font-size:10px;line-height:1.4">
-                        <div class="head">mini.tsx</div>
-                        <pre style="margin:0"><span class="kw">export default</span> () =&gt; (
+                <div class="row feature-grid">
+                    <!-- feature card template -->
+                    <div class="feature-card">
+                        <div class="mono muted" style="font-size:10px;letter-spacing:.12em">01 · REACT</div>
+                        <h3 style="margin:8px 0 6px;font-size:18px">JSX components for circuits</h3>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Compose boards the way you compose UI. Props,
+                            children, hooks — but for resistors.</p>
+                        <div class="code"
+                            style="height:150px;margin-top:14px;padding:12px 14px;font-size:10px;line-height:1.4">
+                            <div class="head">mini.tsx</div>
+                            <pre style="margin:0"><span class="kw">export default</span> () =&gt; (
   &lt;<span class="tg">board</span>&gt;
     &lt;<span class="tg">Resistor</span> <span class="at">name</span>=<span class="st">"R1"</span> /&gt;
     &lt;<span class="tg">Led</span> <span class="at">name</span>=<span class="st">"D1"</span> /&gt;
   &lt;/<span class="tg">board</span>&gt;
 )</pre>
+                        </div>
                     </div>
-                </div>
-                <div class="feature-card">
-                    <div class="mono muted" style="font-size:10px;letter-spacing:.12em">02 · AUTOROUTE</div>
-                    <h3 style="margin:8px 0 6px;font-size:18px">Autorouter in the cloud</h3>
-                    <p style="margin:0;color:var(--ink-2);font-size:13px">Sub-second routing on 4-layer boards. Results
-                        pinned to your commit SHA.</p>
-                    <div class="media" style="height:150px;margin-top:14px">
-                        <span class="label">autorouting demo</span>
-                        <video autoplay muted loop playsinline preload="metadata" aria-label="Autorouting demo">
-                            <source src="assets/autorouting_example.mp4" type="video/mp4">
-                        </video>
+                    <div class="feature-card">
+                        <div class="mono muted" style="font-size:10px;letter-spacing:.12em">02 · AUTOROUTE</div>
+                        <h3 style="margin:8px 0 6px;font-size:18px">Autorouter in the cloud</h3>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Sub-second routing on 4-layer boards. Results
+                            pinned to your commit SHA.</p>
+                        <div class="media" style="height:150px;margin-top:14px">
+                            <span class="label">autorouting demo</span>
+                            <video autoplay muted loop playsinline preload="metadata" aria-label="Autorouting demo">
+                                <source src="assets/autorouting_example.mp4" type="video/mp4">
+                            </video>
+                        </div>
                     </div>
-                </div>
-                <div class="feature-card">
-                    <div class="mono muted" style="font-size:10px;letter-spacing:.12em">03 · AI</div>
-                    <h3 style="margin:8px 0 6px;font-size:18px">AI coding skills for hardware</h3>
-                    <p style="margin:0;color:var(--ink-2);font-size:13px">Give Claude Code and custom agents a tscircuit
-                        skill with the CLI, syntax, workflow, and pre-fab context they need to make useful changes.</p>
-                    <div class="media" style="height:150px;margin-top:14px">
-                        <span class="label">ai coding workflow</span>
-                        <img src="assets/example_ai_coding.png" alt="AI coding example for tscircuit">
+                    <div class="feature-card">
+                        <div class="mono muted" style="font-size:10px;letter-spacing:.12em">03 · AI</div>
+                        <h3 style="margin:8px 0 6px;font-size:18px">AI coding skills for hardware</h3>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Give Claude Code and custom agents a tscircuit
+                            skill with the CLI, syntax, workflow, and pre-fab context they need to make useful changes.</p>
+                        <div class="media" style="height:150px;margin-top:14px">
+                            <span class="label">ai coding workflow</span>
+                            <img src="assets/example_ai_coding.png" alt="AI coding example for tscircuit">
+                        </div>
                     </div>
-                </div>
-                <div class="feature-card">
-                    <div class="mono muted" style="font-size:10px;letter-spacing:.12em">04 · FAB</div>
-                    <h3 style="margin:8px 0 6px;font-size:18px">Export every format you need</h3>
-                    <p style="margin:0;color:var(--ink-2);font-size:13px">Download PCB, schematic, and assembly images
-                        plus fabrication files, KiCad, DSN, JSON, and netlists from the same board source.</p>
-                    <div class="media contain" style="height:150px;margin-top:14px">
-                        <span class="label">export formats</span>
-                        <img src="assets/multiple_formats.png" alt="Multiple export formats available in tscircuit">
+                    <div class="feature-card">
+                        <div class="mono muted" style="font-size:10px;letter-spacing:.12em">04 · FAB</div>
+                        <h3 style="margin:8px 0 6px;font-size:18px">Export every format you need</h3>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Download PCB, schematic, and assembly images
+                            plus fabrication files, KiCad, DSN, JSON, and netlists from the same board source.</p>
+                        <div class="media contain" style="height:150px;margin-top:14px">
+                            <span class="label">export formats</span>
+                            <img src="assets/multiple_formats.png" alt="Multiple export formats available in tscircuit">
+                        </div>
                     </div>
-                </div>
-                <div class="feature-card">
-                    <div class="mono muted" style="font-size:10px;letter-spacing:.12em">05 · REVIEW</div>
-                    <h3 style="margin:8px 0 6px;font-size:18px">PR-native schematic review</h3>
-                    <p style="margin:0;color:var(--ink-2);font-size:13px">Visual diff of schematic + PCB right inside
-                        GitHub. Approvals, comments, rollback.</p>
-                    <div class="media" style="height:150px;margin-top:14px">
-                        <span class="label">review screenshot</span>
-                        <img src="assets/review.png" alt="PR-native schematic review screenshot">
+                    <div class="feature-card">
+                        <div class="mono muted" style="font-size:10px;letter-spacing:.12em">05 · REVIEW</div>
+                        <h3 style="margin:8px 0 6px;font-size:18px">PR-native schematic review</h3>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Visual diff of schematic + PCB right inside
+                            GitHub. Approvals, comments, rollback.</p>
+                        <div class="media" style="height:150px;margin-top:14px">
+                            <span class="label">review screenshot</span>
+                            <img src="assets/review.png" alt="PR-native schematic review screenshot">
+                        </div>
                     </div>
-                </div>
-                <div class="feature-card">
-                    <div class="mono muted" style="font-size:10px;letter-spacing:.12em">06 · OSS</div>
-                    <h3 style="margin:8px 0 6px;font-size:18px">Open &amp; forkable</h3>
-                    <p style="margin:0;color:var(--ink-2);font-size:13px">MIT licensed. 10,000+ footprints in registry.
-                        Contribute yours back.</p>
-                    <div class="media contain" style="height:180px;margin-top:14px">
-                        <span class="label">star history</span>
-                        <img src="https://api.star-history.com/chart?repos=tscircuit/tscircuit&type=date&legend=top-left"
-                            alt="Star history chart for tscircuit">
+                    <div class="feature-card">
+                        <div class="mono muted" style="font-size:10px;letter-spacing:.12em">06 · OSS</div>
+                        <h3 style="margin:8px 0 6px;font-size:18px">Open &amp; forkable</h3>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">MIT licensed. 10,000+ footprints in registry.
+                            Contribute yours back.</p>
+                        <div class="media contain" style="height:180px;margin-top:14px">
+                            <span class="label">star history</span>
+                            <img src="https://api.star-history.com/chart?repos=tscircuit/tscircuit&type=date&legend=top-left"
+                                alt="Star history chart for tscircuit">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1125,15 +1161,17 @@
 
         <!-- Gallery -->
         <section class="section" aria-labelledby="gallery-title">
-            <div class="eyebrow">Shipped with tscircuit</div>
-            <h2 id="gallery-title">Boards teams actually sent to fab.</h2>
-            <div class="row gallery-grid">
-                <div class="pcb" style="height:160px"><span class="tag">// esp32-devkit</span></div>
-                <div class="pcb" style="height:160px"><span class="tag">// usb-pd trigger</span></div>
-                <div class="pcb" style="height:160px"><span class="tag">// motor driver</span></div>
-                <div class="pcb" style="height:160px"><span class="tag">// lora node</span></div>
+            <div class="gallery-shell">
+                <div class="eyebrow">Shipped with tscircuit</div>
+                <h2 id="gallery-title">Boards teams actually sent to fab.</h2>
+                <div class="row gallery-grid">
+                    <div class="pcb" style="height:160px"><span class="tag">// esp32-devkit</span></div>
+                    <div class="pcb" style="height:160px"><span class="tag">// usb-pd trigger</span></div>
+                    <div class="pcb" style="height:160px"><span class="tag">// motor driver</span></div>
+                    <div class="pcb" style="height:160px"><span class="tag">// lora node</span></div>
+                </div>
+                <div style="margin-top:16px"><a class="btn ghost" href="https://tscircuit.com/trending">Browse gallery · 240 boards →</a></div>
             </div>
-            <div style="margin-top:16px"><a class="btn ghost" href="https://tscircuit.com/trending">Browse gallery · 240 boards →</a></div>
         </section>
 
         <!-- Hiring -->
@@ -1153,46 +1191,48 @@
         <!-- Footer -->
         </main>
         <footer class="foot">
-            <div>
-                <a class="logo" href="https://tscircuit.com" style="margin-bottom:10px"><span
-                        class="sq"></span>tscircuit</a>
-                <p style="margin:0;max-width:280px">Hardware as code. Built in the open.</p>
-            </div>
-            <div>
-                <h5>Product</h5>
-                <ul>
-                    <li><a href="https://tscircuit.com/playground">Playground</a></li>
-                    <li><a href="https://tscircuit.com/registry">Registry</a></li>
-                    <li><a href="https://docs.tscircuit.com/category/command-line-interface">CLI</a></li>
-                    <li><a href="https://tscircuit.com/changelog">Changelog</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5>Docs</h5>
-                <ul>
-                    <li><a href="https://docs.tscircuit.com/category/intro">Quickstart</a></li>
-                    <li><a href="https://docs.tscircuit.com/">API</a></li>
-                    <li><a href="https://docs.tscircuit.com/category/tutorials">Examples</a></li>
-                    <li><a href="https://blog.tscircuit.com/">Blog</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5>Community</h5>
-                <ul>
-                    <li><a href="https://github.com/tscircuit/tscircuit">GitHub</a></li>
-                    <li><a href="https://discord.com/invite/V7FGE5ZCbA">Discord</a></li>
-                    <li><a href="https://www.youtube.com/@seveibar">YouTube</a></li>
-                    <li><a href="https://x.com/tscircuit">Twitter</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5>Company</h5>
-                <ul>
-                    <li><a href="https://tscircuit.com/about">About</a></li>
-                    <li><a href="https://tscircuit.com/legal/terms-of-service.html">Terms</a></li>
-                    <li><a href="https://tscircuit.com/legal/privacy-policy.html">Privacy</a></li>
-                    <li><a href="mailto:contact@tscircuit.com">Contact</a></li>
-                </ul>
+            <div class="shell foot-shell">
+                <div>
+                    <a class="logo" href="https://tscircuit.com" style="margin-bottom:10px"><span
+                            class="sq"></span>tscircuit</a>
+                    <p style="margin:0;max-width:280px">Hardware as code. Built in the open.</p>
+                </div>
+                <div>
+                    <h5>Product</h5>
+                    <ul>
+                        <li><a href="https://tscircuit.com/playground">Playground</a></li>
+                        <li><a href="https://tscircuit.com/registry">Registry</a></li>
+                        <li><a href="https://docs.tscircuit.com/category/command-line-interface">CLI</a></li>
+                        <li><a href="https://tscircuit.com/changelog">Changelog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Docs</h5>
+                    <ul>
+                        <li><a href="https://docs.tscircuit.com/category/intro">Quickstart</a></li>
+                        <li><a href="https://docs.tscircuit.com/">API</a></li>
+                        <li><a href="https://docs.tscircuit.com/category/tutorials">Examples</a></li>
+                        <li><a href="https://blog.tscircuit.com/">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Community</h5>
+                    <ul>
+                        <li><a href="https://github.com/tscircuit/tscircuit">GitHub</a></li>
+                        <li><a href="https://discord.com/invite/V7FGE5ZCbA">Discord</a></li>
+                        <li><a href="https://www.youtube.com/@seveibar">YouTube</a></li>
+                        <li><a href="https://x.com/tscircuit">Twitter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="https://tscircuit.com/about">About</a></li>
+                        <li><a href="https://tscircuit.com/legal/terms-of-service.html">Terms</a></li>
+                        <li><a href="https://tscircuit.com/legal/privacy-policy.html">Privacy</a></li>
+                        <li><a href="mailto:contact@tscircuit.com">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </footer>
         <script>
