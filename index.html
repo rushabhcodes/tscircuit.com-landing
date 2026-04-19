@@ -1040,9 +1040,21 @@
                         <div class="code"
                             style="height:150px;margin-top:14px;padding:12px 14px;font-size:10px;line-height:1.4">
                             <pre style="margin:0"><span class="kw">export default</span> () =&gt; (
-  &lt;<span class="tg">board</span>&gt;
-    &lt;<span class="tg">Resistor</span> <span class="at">name</span>=<span class="st">"R1"</span> /&gt;
-    &lt;<span class="tg">Led</span> <span class="at">name</span>=<span class="st">"D1"</span> /&gt;
+  &lt;<span class="tg">board</span> <span class="at">width</span>=<span class="st">"18mm"</span> <span class="at">height</span>=<span class="st">"12mm"</span>&gt;
+    &lt;<span class="tg">resistor</span>
+      <span class="at">name</span>=<span class="st">"R1"</span>
+      <span class="at">resistance</span>=<span class="st">"1k"</span>
+      <span class="at">footprint</span>=<span class="st">"0402"</span>
+      <span class="at">pcbX</span>=<span class="st">{-4}</span>
+    /&gt;
+    &lt;<span class="tg">led</span>
+      <span class="at">name</span>=<span class="st">"D1"</span>
+      <span class="at">color</span>=<span class="st">"red"</span>
+      <span class="at">footprint</span>=<span class="st">"0603"</span>
+      <span class="at">pcbX</span>=<span class="st">{4}</span>
+    /&gt;
+    &lt;<span class="tg">trace</span> <span class="at">from</span>=<span class="st">".R1 &gt; .pin2"</span> <span class="at">to</span>=<span class="st">".D1 &gt; .anode"</span> /&gt;
+    &lt;<span class="tg">trace</span> <span class="at">from</span>=<span class="st">".D1 &gt; .cathode"</span> <span class="at">to</span>=<span class="st">".R1 &gt; .pin1"</span> /&gt;
   &lt;/<span class="tg">board</span>&gt;
 )</pre>
                         </div>
