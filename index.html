@@ -355,6 +355,69 @@
             opacity: .7
         }
 
+        .gallery-board {
+            min-height: 190px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+            background-color: var(--ink);
+        }
+
+        .gallery-board:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(192, 69, 69, .18);
+            border-color: var(--accent);
+        }
+
+        .gallery-board::before {
+            background:
+                linear-gradient(180deg, rgba(26, 26, 26, .08) 0%, rgba(26, 26, 26, .32) 48%, rgba(26, 26, 26, .84) 100%),
+                var(--board-image);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .gallery-board::after {
+            content: "open project ↗";
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            color: rgba(255, 255, 255, .82);
+            font-size: 10px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .gallery-board .board-owner {
+            color: rgba(255, 255, 255, .68);
+            font-size: 10px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .gallery-board>div,
+        .gallery-board .tag {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-board .board-name {
+            color: #F6FFF8;
+            font-size: 18px;
+            line-height: 1.2;
+            max-width: 180px;
+        }
+
+        .gallery-board .tag {
+            position: static;
+            align-self: flex-start;
+            opacity: .85;
+        }
+
         /* Code block */
         .code {
             background: #0E0E0E;
@@ -737,7 +800,7 @@
         }
 
         .gallery-grid {
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             margin-top: 20px;
         }
 
@@ -931,7 +994,7 @@
     </style>
 </head>
 
-    <body>
+<body>
     <!-- nav -->
     <nav class="nav" aria-label="Primary">
         <div class="shell nav-shell">
@@ -965,30 +1028,22 @@
                         JLCPCB in a single command.
                     </p>
                     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-                        <button
-                            type="button"
-                            class="btn accent"
-                            id="hero-install-copy"
-                            data-copy-text="npm install -g tscircuit"
-                            aria-label="Copy npm install -g tscircuit"
-                            title="Copy npm install -g tscircuit"
-                        ><span>npm install -g tscircuit</span><span id="hero-install-copy-icon" class="icon" aria-hidden="true"></span></button>
+                        <button type="button" class="btn accent" id="hero-install-copy"
+                            data-copy-text="npm install -g tscircuit" aria-label="Copy npm install -g tscircuit"
+                            title="Copy npm install -g tscircuit"><span>npm install -g tscircuit</span><span
+                                id="hero-install-copy-icon" class="icon" aria-hidden="true"></span></button>
                         <a class="btn" href="https://docs.tscircuit.com/">Read the docs →</a>
-                        <a
-                            class="mono muted"
-                            id="hero-browser-shortcut"
-                            href="https://tscircuit.com/playground"
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-keyshortcuts="Meta+K Control+K"
-                            style="font-size:11px;text-decoration:none"
-                        >⌘K to try in browser</a>
+                        <a class="mono muted" id="hero-browser-shortcut" href="https://tscircuit.com/playground"
+                            target="_blank" rel="noreferrer" aria-keyshortcuts="Meta+K Control+K"
+                            style="font-size:11px;text-decoration:none">⌘K to try in browser</a>
                     </div>
                     <div
                         style="display:flex;gap:28px;margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">
                         <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">2.1k</b><br>Repo stars</div>
-                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">289</b><br>Public repos</div>
-                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">209</b><br>GH followers</div>
+                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">289</b><br>Public repos
+                        </div>
+                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">209</b><br>GH followers
+                        </div>
                     </div>
                 </div>
                 <div class="hero-stack">
@@ -1008,13 +1063,14 @@
                     <div class="render-stage" style="height:100%">
                         <span id="hero-render-status" class="status" role="status" aria-live="polite">syncing</span>
                         <div class="render-tabs" role="tablist" aria-label="Preview view">
-                            <button type="button" class="render-tab" id="preview-tab-pcb" data-view="pcb"
-                                role="tab" aria-selected="false" aria-controls="preview-panel-pcb" tabindex="-1">PCB</button>
+                            <button type="button" class="render-tab" id="preview-tab-pcb" data-view="pcb" role="tab"
+                                aria-selected="false" aria-controls="preview-panel-pcb" tabindex="-1">PCB</button>
                             <button type="button" class="render-tab" id="preview-tab-schematic" data-view="schematic"
                                 role="tab" aria-selected="false" aria-controls="preview-panel-schematic"
                                 tabindex="-1">SCH</button>
-                            <button type="button" class="render-tab active" id="preview-tab-3d" data-view="3d" role="tab"
-                                aria-selected="true" aria-controls="preview-panel-3d" tabindex="0">3D</button>
+                            <button type="button" class="render-tab active" id="preview-tab-3d" data-view="3d"
+                                role="tab" aria-selected="true" aria-controls="preview-panel-3d"
+                                tabindex="0">3D</button>
                         </div>
                         <div id="preview-panel-pcb" class="render-panel" role="tabpanel"
                             aria-labelledby="preview-tab-pcb" hidden>
@@ -1037,7 +1093,8 @@
         <section aria-label="Hardware teams building with tscircuit"
             style="padding:18px clamp(24px,6vw,96px);border-top:1.5px dashed var(--line-2);border-bottom:1.5px dashed var(--line-2);">
             <div class="shell trust-strip">
-                <span class="mono muted" style="font-size:11px;white-space:nowrap">Hardware teams building with tscircuit
+                <span class="mono muted" style="font-size:11px;white-space:nowrap">Hardware teams building with
+                    tscircuit
                     →</span>
                 <div style="display:flex;gap:40px;flex:1;justify-content:space-around;opacity:.7">
                     <span class="hand" style="font-size:22px">◇ company</span>
@@ -1063,7 +1120,8 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">01 · REACT</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">JSX components for circuits</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Compose boards the way you compose UI. Props,
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Compose boards the way you compose UI.
+                            Props,
                             children, hooks — but for resistors.</p>
                         <div class="code"
                             style="height:150px;margin-top:14px;padding:12px 14px;font-size:10px;line-height:1.4">
@@ -1090,7 +1148,8 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">02 · AUTOROUTE</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">Autorouter in the cloud</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Sub-second routing on 4-layer boards. Results
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Sub-second routing on 4-layer boards.
+                            Results
                             pinned to your commit SHA.</p>
                         <div class="media" style="height:150px;margin-top:14px">
                             <video autoplay muted loop playsinline preload="metadata" aria-label="Autorouting demo">
@@ -1101,8 +1160,10 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">03 · AI</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">AI coding skills for hardware</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Give Claude Code and custom agents a tscircuit
-                            skill with the CLI, syntax, workflow, and pre-fab context they need to make useful changes.</p>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Give Claude Code and custom agents a
+                            tscircuit
+                            skill with the CLI, syntax, workflow, and pre-fab context they need to make useful changes.
+                        </p>
                         <div class="media" style="height:150px;margin-top:14px">
                             <img src="assets/example_ai_coding.png" alt="AI coding example for tscircuit">
                         </div>
@@ -1110,7 +1171,8 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">04 · FAB</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">Export every format you need</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Download PCB, schematic, and assembly images
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Download PCB, schematic, and assembly
+                            images
                             plus fabrication files, KiCad, DSN, JSON, and netlists from the same board source.</p>
                         <div class="media contain" style="height:150px;margin-top:14px">
                             <img src="assets/multiple_formats.png" alt="Multiple export formats available in tscircuit">
@@ -1119,7 +1181,8 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">05 · REVIEW</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">PR-native schematic review</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Visual diff of schematic + PCB right inside
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Visual diff of schematic + PCB right
+                            inside
                             GitHub. Approvals, comments, rollback.</p>
                         <div class="media" style="height:150px;margin-top:14px">
                             <img src="assets/review.png" alt="PR-native schematic review screenshot">
@@ -1128,7 +1191,8 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">06 · OSS</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">Open &amp; forkable</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">MIT licensed. 10,000+ footprints in registry.
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">MIT licensed. 10,000+ footprints in
+                            registry.
                             Contribute yours back.</p>
                         <div class="media contain" style="height:180px;margin-top:14px">
                             <img src="https://api.star-history.com/chart?repos=tscircuit/tscircuit&type=date&legend=top-left"
@@ -1138,7 +1202,8 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">07 · SIMULATION</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">Analog Simulation</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Run analog simulations in your browser or on
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Run analog simulations in your browser or
+                            on
                             the command line via WebAssembly ngspice.</p>
                         <div class="media contain" style="height:150px;margin-top:14px">
                             <img src="assets/analogsimulation.png" alt="Analog simulation view in tscircuit">
@@ -1157,8 +1222,10 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">09 · BOM</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">Automatic Part Selection</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Specify parts without part numbers. Bill of
-                            materials automatically generated based on realtime availability from supplier integrations.</p>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Specify parts without part numbers. Bill
+                            of
+                            materials automatically generated based on realtime availability from supplier integrations.
+                        </p>
                         <div class="media contain" style="height:150px;margin-top:14px">
                             <img src="assets/BOM.png" alt="Automatic part selection and bill of materials in tscircuit">
                         </div>
@@ -1191,12 +1258,34 @@
                 <div class="eyebrow">Shipped with tscircuit</div>
                 <h2 id="gallery-title">Boards teams actually sent to fab.</h2>
                 <div class="row gallery-grid">
-                    <div class="pcb" style="height:160px"><span class="tag">// esp32-devkit</span></div>
-                    <div class="pcb" style="height:160px"><span class="tag">// usb-pd trigger</span></div>
-                    <div class="pcb" style="height:160px"><span class="tag">// motor driver</span></div>
-                    <div class="pcb" style="height:160px"><span class="tag">// lora node</span></div>
+                    <a class="pcb gallery-board" href="https://tscircuit.com/tscircuit/motor-controller" target="_blank"
+                        rel="noreferrer"
+                        style='--board-image:url("https://api.tscircuit.com/packages/images/tscircuit/motor-controller/3d.png?fs_sha=md5-c2c0398bd4e4ba65f1ac347ab98fe6c8")'>
+                        <div>
+                            <div class="board-owner">tscircuit</div>
+                            <div class="board-name">motor-controller</div>
+                        </div>
+                    </a>
+
+                    <a class="pcb gallery-board" href="https://tscircuit.com/seveibar/keyboard-default60"
+                        target="_blank" rel="noreferrer"
+                        style='--board-image:url("https://api.tscircuit.com/packages/images/seveibar/keyboard-default60/3d.png?fs_sha=md5-5d1ef3b6acd49f7490d1c071a09af9fe")'>
+                        <div>
+                            <div class="board-owner">seveibar</div>
+                            <div class="board-name">keyboard-default60</div>
+                        </div>
+                    </a>
+                    <a class="pcb gallery-board" href="https://tscircuit.com/seveibar/led-water-accelerometer"
+                        target="_blank" rel="noreferrer"
+                        style='--board-image:url("https://api.tscircuit.com/packages/images/seveibar/led-water-accelerometer/3d.png?fs_sha=md5-8c17230bc054ae056c4280be4bb268bb")'>
+                        <div>
+                            <div class="board-owner">seveibar</div>
+                            <div class="board-name">led-water-accelerometer</div>
+                        </div>
+                    </a>
                 </div>
-                <div style="margin-top:16px"><a class="btn ghost" href="https://tscircuit.com/trending">Browse gallery · 240 boards →</a></div>
+                <div style="margin-top:16px"><a class="btn ghost" href="https://tscircuit.com/trending">Browse gallery ·
+                        240 boards →</a></div>
             </div>
         </section>
 
@@ -1206,7 +1295,8 @@
             <div class="hiring-row">
                 <div>
                     <div class="eyebrow">Careers</div>
-                    <h2 id="careers-title" style="margin:0">We're hiring EEs, compiler nerds, and autorouting wizards.</h2>
+                    <h2 id="careers-title" style="margin:0">We're hiring EEs, compiler nerds, and autorouting wizards.
+                    </h2>
                     <p class="sub" style="margin-top:8px">Remote-friendly. Work on the stuff you wish existed when you
                         were at your last hardware job.</p>
                 </div>
@@ -1215,54 +1305,54 @@
         </section>
 
         <!-- Footer -->
-        </main>
-        <footer class="foot">
-            <div class="shell foot-shell">
-                <div>
-                    <a class="logo" href="https://tscircuit.com" style="margin-bottom:10px"><span
-                            class="sq"></span>tscircuit</a>
-                    <p style="margin:0;max-width:280px">Hardware as code. Built in the open.</p>
-                </div>
-                <div>
-                    <h5>Product</h5>
-                    <ul>
-                        <li><a href="https://tscircuit.com/playground">Playground</a></li>
-                        <li><a href="https://tscircuit.com/registry">Registry</a></li>
-                        <li><a href="https://docs.tscircuit.com/category/command-line-interface">CLI</a></li>
-                        <li><a href="https://tscircuit.com/changelog">Changelog</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5>Docs</h5>
-                    <ul>
-                        <li><a href="https://docs.tscircuit.com/category/intro">Quickstart</a></li>
-                        <li><a href="https://docs.tscircuit.com/">API</a></li>
-                        <li><a href="https://docs.tscircuit.com/category/tutorials">Examples</a></li>
-                        <li><a href="https://blog.tscircuit.com/">Blog</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5>Community</h5>
-                    <ul>
-                        <li><a href="https://github.com/tscircuit/tscircuit">GitHub</a></li>
-                        <li><a href="https://discord.com/invite/V7FGE5ZCbA">Discord</a></li>
-                        <li><a href="https://www.youtube.com/@seveibar">YouTube</a></li>
-                        <li><a href="https://x.com/tscircuit">Twitter</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5>Company</h5>
-                    <ul>
-                        <li><a href="https://tscircuit.com/about">About</a></li>
-                        <li><a href="https://tscircuit.com/legal/terms-of-service.html">Terms</a></li>
-                        <li><a href="https://tscircuit.com/legal/privacy-policy.html">Privacy</a></li>
-                        <li><a href="mailto:contact@tscircuit.com">Contact</a></li>
-                    </ul>
-                </div>
+    </main>
+    <footer class="foot">
+        <div class="shell foot-shell">
+            <div>
+                <a class="logo" href="https://tscircuit.com" style="margin-bottom:10px"><span
+                        class="sq"></span>tscircuit</a>
+                <p style="margin:0;max-width:280px">Hardware as code. Built in the open.</p>
             </div>
-        </footer>
-        <script>
-            const defaultHeroCode = `import { RedLed } from "@tsci/seveibar.red-led"
+            <div>
+                <h5>Product</h5>
+                <ul>
+                    <li><a href="https://tscircuit.com/playground">Playground</a></li>
+                    <li><a href="https://tscircuit.com/registry">Registry</a></li>
+                    <li><a href="https://docs.tscircuit.com/category/command-line-interface">CLI</a></li>
+                    <li><a href="https://tscircuit.com/changelog">Changelog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Docs</h5>
+                <ul>
+                    <li><a href="https://docs.tscircuit.com/category/intro">Quickstart</a></li>
+                    <li><a href="https://docs.tscircuit.com/">API</a></li>
+                    <li><a href="https://docs.tscircuit.com/category/tutorials">Examples</a></li>
+                    <li><a href="https://blog.tscircuit.com/">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Community</h5>
+                <ul>
+                    <li><a href="https://github.com/tscircuit/tscircuit">GitHub</a></li>
+                    <li><a href="https://discord.com/invite/V7FGE5ZCbA">Discord</a></li>
+                    <li><a href="https://www.youtube.com/@seveibar">YouTube</a></li>
+                    <li><a href="https://x.com/tscircuit">Twitter</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="https://tscircuit.com/about">About</a></li>
+                    <li><a href="https://tscircuit.com/legal/terms-of-service.html">Terms</a></li>
+                    <li><a href="https://tscircuit.com/legal/privacy-policy.html">Privacy</a></li>
+                    <li><a href="mailto:contact@tscircuit.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const defaultHeroCode = `import { RedLed } from "@tsci/seveibar.red-led"
 import { PushButton } from "@tsci/seveibar.push-button"
 import { SmdUsbC } from "@tsci/seveibar.smd-usb-c"
 
@@ -1289,392 +1379,392 @@ export default () => {
   )
 }`
 
-            const editorInput = document.getElementById("hero-code-input")
-            const editorShell = document.querySelector(".editor-shell")
-            const editorGutter = document.getElementById("hero-code-gutter")
-            const editorGutterTrack = document.getElementById("hero-code-gutter-track")
-            const editorHighlight = document.getElementById("hero-code-highlight")
-            const editorHighlightTrack = document.getElementById("hero-code-highlight-track")
-            const renderStatus = document.getElementById("hero-render-status")
-            const renderTabs = [...document.querySelectorAll(".render-tab")]
-            const heroInstallCopyButton = document.getElementById("hero-install-copy")
-            const heroInstallCopyIcon = document.getElementById("hero-install-copy-icon")
-            const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
-            const installCommand = heroInstallCopyButton?.dataset.copyText ?? "npm install -g tscircuit"
-            const playgroundUrl = "https://tscircuit.com/playground"
-            let installCopyResetTimeout = null
-            const installCopyIcons = {
-                idle: `
+        const editorInput = document.getElementById("hero-code-input")
+        const editorShell = document.querySelector(".editor-shell")
+        const editorGutter = document.getElementById("hero-code-gutter")
+        const editorGutterTrack = document.getElementById("hero-code-gutter-track")
+        const editorHighlight = document.getElementById("hero-code-highlight")
+        const editorHighlightTrack = document.getElementById("hero-code-highlight-track")
+        const renderStatus = document.getElementById("hero-render-status")
+        const renderTabs = [...document.querySelectorAll(".render-tab")]
+        const heroInstallCopyButton = document.getElementById("hero-install-copy")
+        const heroInstallCopyIcon = document.getElementById("hero-install-copy-icon")
+        const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
+        const installCommand = heroInstallCopyButton?.dataset.copyText ?? "npm install -g tscircuit"
+        const playgroundUrl = "https://tscircuit.com/playground"
+        let installCopyResetTimeout = null
+        const installCopyIcons = {
+            idle: `
                     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                         <rect x="5" y="3" width="8" height="10" rx="1.5"></rect>
                         <path d="M3.5 11.5V5.5C3.5 4.67157 4.17157 4 5 4"></path>
                     </svg>
                 `,
-                success: `
+            success: `
                     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
                         <path d="M3.5 8.5 6.5 11.5 12.5 5.5"></path>
                     </svg>
                 `,
-                error: `
+            error: `
                     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
                         <path d="M5 5 11 11"></path>
                         <path d="M11 5 5 11"></path>
                     </svg>
                 `,
-            }
-            const renderViewConfig = {
-                pcb: {
-                    alt: "Live PCB render from svg.tscircuit.com",
+        }
+        const renderViewConfig = {
+            pcb: {
+                alt: "Live PCB render from svg.tscircuit.com",
+            },
+            schematic: {
+                alt: "Live schematic render from svg.tscircuit.com",
+            },
+            "3d": {
+                alt: "Live 3D render from svg.tscircuit.com",
+                format: "png",
+            },
+        }
+        const renderPanels = Object.fromEntries(
+            Object.keys(renderViewConfig).map((view) => [
+                view,
+                {
+                    tab: document.querySelector(`.render-tab[data-view="${view}"]`),
+                    panel: document.getElementById(`preview-panel-${view}`),
+                    image: document.getElementById(`hero-render-image-${view}`),
                 },
-                schematic: {
-                    alt: "Live schematic render from svg.tscircuit.com",
-                },
-                "3d": {
-                    alt: "Live 3D render from svg.tscircuit.com",
-                    format: "png",
-                },
-            }
-            const renderPanels = Object.fromEntries(
-                Object.keys(renderViewConfig).map((view) => [
-                    view,
-                    {
-                        tab: document.querySelector(`.render-tab[data-view="${view}"]`),
-                        panel: document.getElementById(`preview-panel-${view}`),
-                        image: document.getElementById(`hero-render-image-${view}`),
-                    },
-                ])
-            )
-            const renderViewOrder = renderTabs
-                .map((tab) => tab.dataset.view)
-                .filter((view) => Boolean(view && renderViewConfig[view]))
-            let currentView = "3d"
+            ])
+        )
+        const renderViewOrder = renderTabs
+            .map((tab) => tab.dataset.view)
+            .filter((view) => Boolean(view && renderViewConfig[view]))
+        let currentView = "3d"
 
-            const escapeHtml = (value) =>
-                value
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
+        const escapeHtml = (value) =>
+            value
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
 
-            const getLineNumbers = (value) =>
-                Array.from({ length: value.split("\n").length }, (_, index) => index + 1).join("\n")
+        const getLineNumbers = (value) =>
+            Array.from({ length: value.split("\n").length }, (_, index) => index + 1).join("\n")
 
-            const highlightCode = (value) => {
-                const tokenPattern =
-                    /(?<comment>\/\/.*$)|(?<string>"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(?<tag><\/?[A-Za-z][\w.-]*)|(?<number>-?\d+(?:\.\d+)?)(?=\})|(?<keyword>\b(?:import|from|export|default|return|const)\b)|(?<attr>\b[A-Za-z_:][\w:.-]*(?==))/gm
+        const highlightCode = (value) => {
+            const tokenPattern =
+                /(?<comment>\/\/.*$)|(?<string>"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(?<tag><\/?[A-Za-z][\w.-]*)|(?<number>-?\d+(?:\.\d+)?)(?=\})|(?<keyword>\b(?:import|from|export|default|return|const)\b)|(?<attr>\b[A-Za-z_:][\w:.-]*(?==))/gm
 
-                let html = ""
-                let lastIndex = 0
+            let html = ""
+            let lastIndex = 0
 
-                for (const match of value.matchAll(tokenPattern)) {
-                    const [token] = match
-                    const index = match.index ?? 0
+            for (const match of value.matchAll(tokenPattern)) {
+                const [token] = match
+                const index = match.index ?? 0
 
-                    html += escapeHtml(value.slice(lastIndex, index))
+                html += escapeHtml(value.slice(lastIndex, index))
 
-                    let className = ""
-                    if (match.groups?.comment) className = "cm"
-                    else if (match.groups?.string) className = "st"
-                    else if (match.groups?.tag) className = "tg"
-                    else if (match.groups?.number) className = "n"
-                    else if (match.groups?.keyword) className = "kw"
-                    else if (match.groups?.attr) className = "at"
+                let className = ""
+                if (match.groups?.comment) className = "cm"
+                else if (match.groups?.string) className = "st"
+                else if (match.groups?.tag) className = "tg"
+                else if (match.groups?.number) className = "n"
+                else if (match.groups?.keyword) className = "kw"
+                else if (match.groups?.attr) className = "at"
 
-                    html += className
-                        ? `<span class="${className}">${escapeHtml(token)}</span>`
-                        : escapeHtml(token)
+                html += className
+                    ? `<span class="${className}">${escapeHtml(token)}</span>`
+                    : escapeHtml(token)
 
-                    lastIndex = index + token.length
-                }
-
-                html += escapeHtml(value.slice(lastIndex))
-                return html
+                lastIndex = index + token.length
             }
 
-            const syncEditor = () => {
-                editorHighlightTrack.innerHTML = `${highlightCode(editorInput.value)}\n`
-                editorGutterTrack.textContent = `${getLineNumbers(editorInput.value)}\n`
-                editorHighlightTrack.style.transform = `translate(${-editorInput.scrollLeft}px, ${-editorInput.scrollTop}px)`
-                editorGutterTrack.style.transform = `translateY(${-editorInput.scrollTop}px)`
-            }
+            html += escapeHtml(value.slice(lastIndex))
+            return html
+        }
 
-            const setRenderStatus = (label, isError) => {
-                renderStatus.textContent = label
-                renderStatus.classList.toggle("error", Boolean(isError))
-            }
+        const syncEditor = () => {
+            editorHighlightTrack.innerHTML = `${highlightCode(editorInput.value)}\n`
+            editorGutterTrack.textContent = `${getLineNumbers(editorInput.value)}\n`
+            editorHighlightTrack.style.transform = `translate(${-editorInput.scrollLeft}px, ${-editorInput.scrollTop}px)`
+            editorGutterTrack.style.transform = `translateY(${-editorInput.scrollTop}px)`
+        }
 
-            const syncRenderTabs = () => {
-                renderViewOrder.forEach((view) => {
-                    const panelConfig = renderPanels[view]
+        const setRenderStatus = (label, isError) => {
+            renderStatus.textContent = label
+            renderStatus.classList.toggle("error", Boolean(isError))
+        }
 
-                    if (!panelConfig) return
+        const syncRenderTabs = () => {
+            renderViewOrder.forEach((view) => {
+                const panelConfig = renderPanels[view]
 
-                    const isActive = view === currentView
-                    panelConfig.tab.classList.toggle("active", isActive)
-                    panelConfig.tab.setAttribute("aria-selected", String(isActive))
-                    panelConfig.tab.tabIndex = isActive ? 0 : -1
-                    panelConfig.panel.hidden = !isActive
-                })
-            }
+                if (!panelConfig) return
 
-            const setCurrentView = (view, { focusTab = false } = {}) => {
-                if (!view || !renderViewConfig[view]) return
+                const isActive = view === currentView
+                panelConfig.tab.classList.toggle("active", isActive)
+                panelConfig.tab.setAttribute("aria-selected", String(isActive))
+                panelConfig.tab.tabIndex = isActive ? 0 : -1
+                panelConfig.panel.hidden = !isActive
+            })
+        }
 
-                currentView = view
-                syncRenderTabs()
-                updatePreview()
+        const setCurrentView = (view, { focusTab = false } = {}) => {
+            if (!view || !renderViewConfig[view]) return
 
-                if (focusTab) {
-                    renderPanels[view]?.tab.focus()
-                }
-            }
-
-            const getActiveRenderPanel = () => {
-                const panelConfig = renderPanels[currentView]
-
-                if (!panelConfig) {
-                    return null
-                }
-
-                return panelConfig
-            }
-
-            const setRenderContent = (viewConfig) => {
-                const activePanel = getActiveRenderPanel()
-
-                if (!activePanel) {
-                    setRenderStatus("invalid view", true)
-                    return null
-                }
-
-                activePanel.image.alt = viewConfig.alt
-                return activePanel
-            }
-
-            const updatePreview = () => {
-                setRenderStatus("syncing", false)
-                const viewConfig = renderViewConfig[currentView]
-
-                if (!viewConfig) {
-                    setRenderStatus("invalid view", true)
-                    return
-                }
-
-                const activePanel = setRenderContent(viewConfig)
-
-                if (!activePanel) {
-                    return
-                }
-
-                const params = new URLSearchParams({
-                    svg_type: currentView,
-                    fs_map: JSON.stringify({
-                        "index.tsx": editorInput.value,
-                    }),
-                    main_component_path: "index.tsx",
-                })
-
-                if (viewConfig.format) {
-                    params.set("format", viewConfig.format)
-                }
-
-                activePanel.image.src = `https://svg.tscircuit.com/?${params.toString()}`
-            }
-
-            const focusRenderTabByOffset = (tab, offset) => {
-                const currentIndex = renderViewOrder.indexOf(tab.dataset.view)
-
-                if (currentIndex === -1) return
-
-                const nextIndex =
-                    (currentIndex + offset + renderViewOrder.length) % renderViewOrder.length
-                setCurrentView(renderViewOrder[nextIndex], { focusTab: true })
-            }
-
-            const focusBoundaryRenderTab = (index) => {
-                const nextView = renderViewOrder[index]
-
-                if (!nextView) return
-
-                setCurrentView(nextView, { focusTab: true })
-            }
-
-            const debounce = (callback, delay) => {
-                let timeoutId = null
-
-                return (...args) => {
-                    window.clearTimeout(timeoutId)
-                    timeoutId = window.setTimeout(() => callback(...args), delay)
-                }
-            }
-
-            const openPlayground = () => {
-                window.open(playgroundUrl, "_blank", "noopener,noreferrer")
-            }
-
-            const setHeroInstallCopyState = (state) => {
-                if (!heroInstallCopyButton || !heroInstallCopyIcon) return
-
-                const labels = {
-                    idle: "Copy npm install -g tscircuit",
-                    success: "Copied npm install -g tscircuit",
-                    error: "Copy failed for npm install -g tscircuit",
-                }
-
-                heroInstallCopyButton.setAttribute("aria-label", labels[state] ?? labels.idle)
-                heroInstallCopyButton.title = labels[state] ?? labels.idle
-                heroInstallCopyIcon.innerHTML = installCopyIcons[state] ?? installCopyIcons.idle
-            }
-
-            const copyTextToClipboard = async (value) => {
-                if (navigator.clipboard?.writeText) {
-                    await navigator.clipboard.writeText(value)
-                    return
-                }
-
-                const temporaryTextarea = document.createElement("textarea")
-                temporaryTextarea.value = value
-                temporaryTextarea.setAttribute("readonly", "")
-                temporaryTextarea.style.position = "absolute"
-                temporaryTextarea.style.left = "-9999px"
-                document.body.appendChild(temporaryTextarea)
-                temporaryTextarea.select()
-
-                const didCopy = document.execCommand("copy")
-                temporaryTextarea.remove()
-
-                if (!didCopy) {
-                    throw new Error("Clipboard copy failed")
-                }
-            }
-
-            const debouncedPreviewUpdate = debounce(updatePreview, 350)
-
-            editorInput.value = defaultHeroCode
-            setHeroInstallCopyState("idle")
-            syncEditor()
+            currentView = view
+            syncRenderTabs()
             updatePreview()
 
-            editorInput.addEventListener("input", () => {
+            if (focusTab) {
+                renderPanels[view]?.tab.focus()
+            }
+        }
+
+        const getActiveRenderPanel = () => {
+            const panelConfig = renderPanels[currentView]
+
+            if (!panelConfig) {
+                return null
+            }
+
+            return panelConfig
+        }
+
+        const setRenderContent = (viewConfig) => {
+            const activePanel = getActiveRenderPanel()
+
+            if (!activePanel) {
+                setRenderStatus("invalid view", true)
+                return null
+            }
+
+            activePanel.image.alt = viewConfig.alt
+            return activePanel
+        }
+
+        const updatePreview = () => {
+            setRenderStatus("syncing", false)
+            const viewConfig = renderViewConfig[currentView]
+
+            if (!viewConfig) {
+                setRenderStatus("invalid view", true)
+                return
+            }
+
+            const activePanel = setRenderContent(viewConfig)
+
+            if (!activePanel) {
+                return
+            }
+
+            const params = new URLSearchParams({
+                svg_type: currentView,
+                fs_map: JSON.stringify({
+                    "index.tsx": editorInput.value,
+                }),
+                main_component_path: "index.tsx",
+            })
+
+            if (viewConfig.format) {
+                params.set("format", viewConfig.format)
+            }
+
+            activePanel.image.src = `https://svg.tscircuit.com/?${params.toString()}`
+        }
+
+        const focusRenderTabByOffset = (tab, offset) => {
+            const currentIndex = renderViewOrder.indexOf(tab.dataset.view)
+
+            if (currentIndex === -1) return
+
+            const nextIndex =
+                (currentIndex + offset + renderViewOrder.length) % renderViewOrder.length
+            setCurrentView(renderViewOrder[nextIndex], { focusTab: true })
+        }
+
+        const focusBoundaryRenderTab = (index) => {
+            const nextView = renderViewOrder[index]
+
+            if (!nextView) return
+
+            setCurrentView(nextView, { focusTab: true })
+        }
+
+        const debounce = (callback, delay) => {
+            let timeoutId = null
+
+            return (...args) => {
+                window.clearTimeout(timeoutId)
+                timeoutId = window.setTimeout(() => callback(...args), delay)
+            }
+        }
+
+        const openPlayground = () => {
+            window.open(playgroundUrl, "_blank", "noopener,noreferrer")
+        }
+
+        const setHeroInstallCopyState = (state) => {
+            if (!heroInstallCopyButton || !heroInstallCopyIcon) return
+
+            const labels = {
+                idle: "Copy npm install -g tscircuit",
+                success: "Copied npm install -g tscircuit",
+                error: "Copy failed for npm install -g tscircuit",
+            }
+
+            heroInstallCopyButton.setAttribute("aria-label", labels[state] ?? labels.idle)
+            heroInstallCopyButton.title = labels[state] ?? labels.idle
+            heroInstallCopyIcon.innerHTML = installCopyIcons[state] ?? installCopyIcons.idle
+        }
+
+        const copyTextToClipboard = async (value) => {
+            if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(value)
+                return
+            }
+
+            const temporaryTextarea = document.createElement("textarea")
+            temporaryTextarea.value = value
+            temporaryTextarea.setAttribute("readonly", "")
+            temporaryTextarea.style.position = "absolute"
+            temporaryTextarea.style.left = "-9999px"
+            document.body.appendChild(temporaryTextarea)
+            temporaryTextarea.select()
+
+            const didCopy = document.execCommand("copy")
+            temporaryTextarea.remove()
+
+            if (!didCopy) {
+                throw new Error("Clipboard copy failed")
+            }
+        }
+
+        const debouncedPreviewUpdate = debounce(updatePreview, 350)
+
+        editorInput.value = defaultHeroCode
+        setHeroInstallCopyState("idle")
+        syncEditor()
+        updatePreview()
+
+        editorInput.addEventListener("input", () => {
+            syncEditor()
+            debouncedPreviewUpdate()
+        })
+        editorInput.addEventListener("scroll", syncEditor)
+        editorInput.addEventListener("focus", () => {
+            editorShell.classList.add("focused")
+        })
+        editorInput.addEventListener("blur", () => {
+            editorShell.classList.remove("focused")
+        })
+        heroInstallCopyButton?.addEventListener("click", async () => {
+            try {
+                await copyTextToClipboard(installCommand)
+                setHeroInstallCopyState("success")
+            } catch (error) {
+                setHeroInstallCopyState("error")
+            }
+
+            window.clearTimeout(installCopyResetTimeout)
+            installCopyResetTimeout = window.setTimeout(() => {
+                setHeroInstallCopyState("idle")
+            }, 1800)
+        })
+        editorInput.addEventListener("keydown", (event) => {
+            const { selectionStart, selectionEnd, value } = editorInput
+
+            if (event.key === "Tab") {
+                event.preventDefault()
+                const nextValue =
+                    value.slice(0, selectionStart) + "  " + value.slice(selectionEnd)
+                editorInput.value = nextValue
+                editorInput.selectionStart = editorInput.selectionEnd = selectionStart + 2
                 syncEditor()
                 debouncedPreviewUpdate()
-            })
-            editorInput.addEventListener("scroll", syncEditor)
-            editorInput.addEventListener("focus", () => {
-                editorShell.classList.add("focused")
-            })
-            editorInput.addEventListener("blur", () => {
-                editorShell.classList.remove("focused")
-            })
-            heroInstallCopyButton?.addEventListener("click", async () => {
-                try {
-                    await copyTextToClipboard(installCommand)
-                    setHeroInstallCopyState("success")
-                } catch (error) {
-                    setHeroInstallCopyState("error")
-                }
+                return
+            }
 
-                window.clearTimeout(installCopyResetTimeout)
-                installCopyResetTimeout = window.setTimeout(() => {
-                    setHeroInstallCopyState("idle")
-                }, 1800)
-            })
-            editorInput.addEventListener("keydown", (event) => {
-                const { selectionStart, selectionEnd, value } = editorInput
+            if (event.key === "Enter") {
+                event.preventDefault()
+                const lineStart = value.lastIndexOf("\n", selectionStart - 1) + 1
+                const currentLine = value.slice(lineStart, selectionStart)
+                const indentMatch = currentLine.match(/^\s*/)
+                const indent = indentMatch ? indentMatch[0] : ""
+                const nextValue =
+                    value.slice(0, selectionStart) + `\n${indent}` + value.slice(selectionEnd)
+                const cursorPosition = selectionStart + indent.length + 1
+                editorInput.value = nextValue
+                editorInput.selectionStart = editorInput.selectionEnd = cursorPosition
+                syncEditor()
+                debouncedPreviewUpdate()
+            }
+        })
+        heroBrowserShortcut?.addEventListener("click", (event) => {
+            event.preventDefault()
+            openPlayground()
+        })
+        window.addEventListener("keydown", (event) => {
+            if (event.key.toLowerCase() !== "k") return
+            if (!event.metaKey && !event.ctrlKey) return
+            if (event.altKey) return
 
-                if (event.key === "Tab") {
+            const target = event.target
+            const isEditableTarget =
+                target instanceof HTMLElement &&
+                (
+                    target.isContentEditable ||
+                    (
+                        (target.tagName === "INPUT" ||
+                            target.tagName === "TEXTAREA" ||
+                            target.tagName === "SELECT") &&
+                        target !== editorInput
+                    )
+                )
+
+            if (isEditableTarget) return
+
+            event.preventDefault()
+            openPlayground()
+        })
+        Object.entries(renderPanels).forEach(([view, panelConfig]) => {
+            panelConfig.image.addEventListener("load", () => {
+                if (currentView !== view) return
+                setRenderStatus("live", false)
+            })
+            panelConfig.image.addEventListener("error", () => {
+                if (currentView !== view) return
+                setRenderStatus("render error", true)
+            })
+        })
+        renderTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setCurrentView(tab.dataset.view)
+            })
+            tab.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowRight") {
                     event.preventDefault()
-                    const nextValue =
-                        value.slice(0, selectionStart) + "  " + value.slice(selectionEnd)
-                    editorInput.value = nextValue
-                    editorInput.selectionStart = editorInput.selectionEnd = selectionStart + 2
-                    syncEditor()
-                    debouncedPreviewUpdate()
+                    focusRenderTabByOffset(tab, 1)
                     return
                 }
 
-                if (event.key === "Enter") {
+                if (event.key === "ArrowLeft") {
                     event.preventDefault()
-                    const lineStart = value.lastIndexOf("\n", selectionStart - 1) + 1
-                    const currentLine = value.slice(lineStart, selectionStart)
-                    const indentMatch = currentLine.match(/^\s*/)
-                    const indent = indentMatch ? indentMatch[0] : ""
-                    const nextValue =
-                        value.slice(0, selectionStart) + `\n${indent}` + value.slice(selectionEnd)
-                    const cursorPosition = selectionStart + indent.length + 1
-                    editorInput.value = nextValue
-                    editorInput.selectionStart = editorInput.selectionEnd = cursorPosition
-                    syncEditor()
-                    debouncedPreviewUpdate()
+                    focusRenderTabByOffset(tab, -1)
+                    return
+                }
+
+                if (event.key === "Home") {
+                    event.preventDefault()
+                    focusBoundaryRenderTab(0)
+                    return
+                }
+
+                if (event.key === "End") {
+                    event.preventDefault()
+                    focusBoundaryRenderTab(renderViewOrder.length - 1)
                 }
             })
-            heroBrowserShortcut?.addEventListener("click", (event) => {
-                event.preventDefault()
-                openPlayground()
-            })
-            window.addEventListener("keydown", (event) => {
-                if (event.key.toLowerCase() !== "k") return
-                if (!event.metaKey && !event.ctrlKey) return
-                if (event.altKey) return
-
-                const target = event.target
-                const isEditableTarget =
-                    target instanceof HTMLElement &&
-                    (
-                        target.isContentEditable ||
-                        (
-                            (target.tagName === "INPUT" ||
-                                target.tagName === "TEXTAREA" ||
-                                target.tagName === "SELECT") &&
-                            target !== editorInput
-                        )
-                    )
-
-                if (isEditableTarget) return
-
-                event.preventDefault()
-                openPlayground()
-            })
-            Object.entries(renderPanels).forEach(([view, panelConfig]) => {
-                panelConfig.image.addEventListener("load", () => {
-                    if (currentView !== view) return
-                    setRenderStatus("live", false)
-                })
-                panelConfig.image.addEventListener("error", () => {
-                    if (currentView !== view) return
-                    setRenderStatus("render error", true)
-                })
-            })
-            renderTabs.forEach((tab) => {
-                tab.addEventListener("click", () => {
-                    setCurrentView(tab.dataset.view)
-                })
-                tab.addEventListener("keydown", (event) => {
-                    if (event.key === "ArrowRight") {
-                        event.preventDefault()
-                        focusRenderTabByOffset(tab, 1)
-                        return
-                    }
-
-                    if (event.key === "ArrowLeft") {
-                        event.preventDefault()
-                        focusRenderTabByOffset(tab, -1)
-                        return
-                    }
-
-                    if (event.key === "Home") {
-                        event.preventDefault()
-                        focusBoundaryRenderTab(0)
-                        return
-                    }
-
-                    if (event.key === "End") {
-                        event.preventDefault()
-                        focusBoundaryRenderTab(renderViewOrder.length - 1)
-                    }
-                })
-            })
-            syncRenderTabs()
-        </script>
+        })
+        syncRenderTabs()
+    </script>
 </body>
 
 </html>
