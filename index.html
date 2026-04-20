@@ -804,6 +804,110 @@
             margin-top: 20px;
         }
 
+        .faq-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 18px;
+            align-items: start;
+        }
+
+        .faq-item {
+            border: 1.5px solid var(--ink);
+            border-radius: 4px;
+            padding: 20px;
+            background: var(--paper);
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-family: 'Geist', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            flex: 0 0 auto;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--muted);
+        }
+
+        .faq-item[open] summary::after {
+            content: "−";
+        }
+
+        .faq-answer {
+            padding-top: 12px;
+            color: var(--ink-2);
+            line-height: 1.65;
+            font-size: 13px;
+        }
+
+        .faq-answer p {
+            margin: 0 0 12px;
+        }
+
+        .faq-answer p:last-child,
+        .faq-answer ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul {
+            margin: 0 0 12px;
+            padding-left: 18px;
+        }
+
+        .faq-answer li + li {
+            margin-top: 8px;
+        }
+
+        .faq-answer a {
+            color: var(--ink);
+            text-underline-offset: 2px;
+        }
+
+        .closing-cta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .closing-cta-panel {
+            border: 1.5px solid var(--ink);
+            border-radius: 4px;
+            padding: 28px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, .45), rgba(255, 255, 255, .14)),
+                var(--paper);
+            box-shadow: 0 10px 28px rgba(26, 26, 26, .08);
+        }
+
+        .closing-cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         .hiring-row {
             display: flex;
             align-items: center;
@@ -904,6 +1008,10 @@
             }
 
             .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-list {
                 grid-template-columns: 1fr;
             }
 
@@ -1306,9 +1414,100 @@
             </div>
         </section>
 
+        <!-- FAQ -->
+        <section class="section" aria-labelledby="faq-title">
+            <div class="shell faq-shell">
+                <div class="eyebrow">FAQ</div>
+                <h2 id="faq-title">Questions people ask before trying tscircuit.</h2>
+                <p class="sub">A quick pass over licensing, workflows, imports, and the API surface.</p>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Can I use tscircuit commercially?</summary>
+                        <div class="faq-answer">
+                            <p>You can use tscircuit for commercial purposes. tscircuit is under the same permissive MIT license as Node.js, React, and thousands of other popular projects you are likely already using!</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I import designs from other software?</summary>
+                        <div class="faq-answer">
+                            <p>tscircuit has some support for importing designs from other software, but it's not yet fully featured. You should file an issue on our GitHub if you'd like to see a specific format supported.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I use tscircuit locally?</summary>
+                        <div class="faq-answer">
+                            <p>Yes, you can use tscircuit locally using the tscircuit CLI, but we recommend starting with the web-based application for simplicity.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can tscircuit make schematics? Is it extra effort?</summary>
+                        <div class="faq-answer">
+                            <p>tscircuit always renders both a schematic and PCB. Unlike traditional EDA where the schematic capture and PCB layout are separate processes, tscircuit combines them by allowing a user to specify constraints and automations. This means that you can design a schematic and then immediately see a PCB layout or vice versa.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What exactly is tscircuit?</summary>
+                        <div class="faq-answer">
+                            <p><strong>tscircuit is a React/TypeScript framework</strong> for designing electronic circuits programmatically.</p>
+                            <p>Instead of using traditional graphical interfaces, you write code to define components, their connections, and layout constraints. This "electronics design as code" approach unlocks powerful capabilities like reusable packages, continuous automation, parameterization, and integration with modern software development workflows like version control with Git.</p>
+                            <p>While the core of tscircuit is the framework, the term "tscircuit" often refers to the broader <strong>ecosystem</strong> built around it. This includes:</p>
+                            <ul>
+                                <li>The online development platform and registry (tscircuit.com)</li>
+                                <li>The <a href="https://docs.tscircuit.com/intro/quickstart-cli" target="_blank" rel="noopener noreferrer">command-line interface (CLI)</a> for local development</li>
+                            </ul>
+                            <p>tscircuit is a modern, web-first approach to hardware development. To learn more about the core concepts and architecture, visit the <a href="https://docs.tscircuit.com" target="_blank" rel="noopener noreferrer">official documentation</a>.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I use tscircuit programmatically?</summary>
+                        <div class="faq-answer">
+                            <p>Yes, you can use tscircuit programmatically with these packages:</p>
+                            <ul>
+                                <li><a href="https://github.com/tscircuit/core" target="_blank" rel="noopener noreferrer">@tscircuit/core</a> - Execute tscircuit React code directly in Node, Bun, or a browser to create Circuit JSON</li>
+                                <li><a href="https://github.com/tscircuit/eval" target="_blank" rel="noopener noreferrer">@tscircuit/eval</a> - Dynamically run tscircuit code with automatic import handling and transpilation support built in</li>
+                                <li><a href="https://github.com/tscircuit/runframe" target="_blank" rel="noopener noreferrer">@tscircuit/runframe</a> - React components for viewing and running circuits in the browser</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How do I display tscircuit circuits on my website?</summary>
+                        <div class="faq-answer">
+                            <p>tscircuit code builds into <a href="https://github.com/tscircuit/circuit-json" target="_blank" rel="noopener noreferrer">Circuit JSON</a>, you can then use the <code>CircuitJsonViewer</code> component inside <a href="https://github.com/tscircuit/runframe" target="_blank" rel="noopener noreferrer">@tscircuit/runframe</a> to display the Circuit JSON on your website as a schematic, PCB, or 3D view.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What is Circuit JSON?</summary>
+                        <div class="faq-answer">
+                            <p><a href="https://github.com/tscircuit/circuit-json" target="_blank" rel="noopener noreferrer">Circuit JSON</a> is a JSON format for representing electronic circuits. It is a sort of assembly language for electronic circuits. All tscircuit designs are compiled to Circuit JSON as the intermediary format.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing CTA -->
+        <section class="section" aria-labelledby="closing-cta-title"
+            style="background:#F2EEE4">
+            <div class="closing-cta-panel">
+                <div class="closing-cta-row">
+                    <div>
+                        <div class="eyebrow">Next step</div>
+                        <h2 id="closing-cta-title" style="margin:0">Start building your first circuit now.</h2>
+                        <p class="sub" style="margin-top:8px">Open the playground, preview instantly, and move into
+                            the CLI and registry when you want repeatable workflows and shared components.</p>
+                    </div>
+                    <div class="closing-cta-actions">
+                        <a class="btn accent" href="https://tscircuit.com/playground">Open playground →</a>
+                        <a class="btn primary" href="https://tscircuit.com/trending">Browse trending boards</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Hiring -->
         <section class="section" aria-labelledby="careers-title"
-            style="border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);background:var(--paper)">
+            style="border-bottom:1.5px solid var(--ink);background:var(--paper)">
             <div class="hiring-row">
                 <div>
                     <div class="eyebrow">Careers</div>
@@ -1366,6 +1565,9 @@
                     <li><a href="mailto:contact@tscircuit.com">Contact</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="shell" style="margin-top:24px;font-family:'JetBrains Mono', monospace;font-size:11px;color:var(--muted);text-align:center">
+            © 2026 tscircuit Inc.
         </div>
     </footer>
     <script>
