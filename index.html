@@ -319,7 +319,7 @@
 
         .media.contain video,
         .media.contain img {
-            object-fit: contain;
+            object-fit: fill;
         }
 
         /* PCB placeholder */
@@ -822,7 +822,16 @@
             flex-direction: column;
         }
 
+        .feature-card-copy {
+            display: grid;
+            gap: 0;
+        }
+
         .feature-card .media {
+            margin-top: auto !important;
+        }
+
+        .feature-card .code {
             margin-top: auto !important;
         }
 
@@ -1124,13 +1133,15 @@
                 <div class="row feature-grid">
                     <!-- feature card template -->
                     <div class="feature-card">
-                        <div class="mono muted" style="font-size:10px;letter-spacing:.12em">01 · REACT</div>
-                        <h3 style="margin:8px 0 6px;font-size:18px">JSX components for circuits</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Compose boards the way you compose UI.
-                            Props,
-                            children, hooks — but for resistors.</p>
+                        <div class="feature-card-copy">
+                            <div class="mono muted" style="font-size:10px;letter-spacing:.12em">01 · REACT</div>
+                            <h3 style="margin:8px 0 6px;font-size:18px">JSX components for circuits</h3>
+                            <p style="margin:0;color:var(--ink-2);font-size:13px">Compose boards the way you compose UI.
+                                Props,
+                                children, hooks — but for resistors.</p>
+                        </div>
                         <div class="code"
-                            style="height:150px;margin-top:14px;padding:12px 14px;font-size:10px;line-height:1.4">
+                            style="height:180px;padding:12px 14px;font-size:10px;line-height:1.4">
                             <pre style="margin:0"><span class="kw">export default</span> () =&gt; (
   &lt;<span class="tg">board</span> <span class="at">width</span>=<span class="st">"18mm"</span> <span class="at">height</span>=<span class="st">"12mm"</span>&gt;
     &lt;<span class="tg">resistor</span>
@@ -1157,7 +1168,7 @@
                         <p style="margin:0;color:var(--ink-2);font-size:13px">Sub-second routing on 4-layer boards.
                             Results
                             pinned to your commit SHA.</p>
-                        <div class="media" style="height:150px;margin-top:14px">
+                        <div class="media" style="height:180px;margin-top:14px">
                             <video autoplay muted loop playsinline preload="metadata" aria-label="Autorouting demo">
                                 <source src="assets/autorouting_example.mp4" type="video/mp4">
                             </video>
@@ -1170,7 +1181,7 @@
                             tscircuit
                             skill with the CLI, syntax, workflow, and pre-fab context they need to make useful changes.
                         </p>
-                        <div class="media" style="height:150px;margin-top:14px">
+                        <div class="media" style="height:180px;margin-top:14px">
                             <img src="assets/example_ai_coding.png" alt="AI coding example for tscircuit">
                         </div>
                     </div>
@@ -1180,7 +1191,7 @@
                         <p style="margin:0;color:var(--ink-2);font-size:13px">Download PCB, schematic, and assembly
                             images
                             plus fabrication files, KiCad, DSN, JSON, and netlists from the same board source.</p>
-                        <div class="media contain" style="height:150px;margin-top:14px">
+                        <div class="media contain" style="height:180px;margin-top:14px">
                             <img src="assets/multiple_formats.png" alt="Multiple export formats available in tscircuit">
                         </div>
                     </div>
@@ -1190,7 +1201,7 @@
                         <p style="margin:0;color:var(--ink-2);font-size:13px">Visual diff of schematic + PCB right
                             inside
                             GitHub. Approvals, comments, rollback.</p>
-                        <div class="media" style="height:150px;margin-top:14px">
+                        <div class="media" style="height:180px;margin-top:14px">
                             <img src="assets/review.png" alt="PR-native schematic review screenshot">
                         </div>
                     </div>
@@ -1211,7 +1222,7 @@
                         <p style="margin:0;color:var(--ink-2);font-size:13px">Run analog simulations in your browser or
                             on
                             the command line via WebAssembly ngspice.</p>
-                        <div class="media contain" style="height:150px;margin-top:14px">
+                        <div class="media contain" style="height:180px;margin-top:14px">
                             <img src="assets/analogsimulation.png" alt="Analog simulation view in tscircuit">
                         </div>
                     </div>
@@ -1221,7 +1232,7 @@
                         <p style="margin:6px 0 0;color:var(--ink-2);font-size:13px">Import your library anywhere. Enable
                             KiCad PCM to have every tscircuit package automatically serve components and subcircuits as
                             importable KiCad modules.</p>
-                        <div class="media contain" style="height:150px;margin-top:14px">
+                        <div class="media contain" style="height:180px;margin-top:14px">
                             <img src="assets/import-kicad-library.png" alt="KiCad library import workflow in tscircuit">
                         </div>
                     </div>
@@ -1232,7 +1243,7 @@
                             of
                             materials automatically generated based on realtime availability from supplier integrations.
                         </p>
-                        <div class="media contain" style="height:150px;margin-top:14px">
+                        <div class="media contain" style="height:180px;margin-top:14px">
                             <img src="assets/BOM.png" alt="Automatic part selection and bill of materials in tscircuit">
                         </div>
                     </div>
