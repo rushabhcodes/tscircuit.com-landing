@@ -1131,7 +1131,9 @@
             </ul>
             <div class="grow"></div>
             <div class="nav-actions">
-                <a class="btn ghost" href="https://github.com/tscircuit/tscircuit">★ 12.4k on GitHub</a>
+                <a class="btn ghost" href="https://github.com/tscircuit/tscircuit">
+                    <span id="github-stars-nav">★ 2.1k on GitHub</span>
+                </a>
                 <a class="btn" href="https://tscircuit.com/login">Sign in</a>
                 <a class="btn primary" href="mailto:contact@tscircuit.com?subject=Book%20a%20demo">Book a demo →</a>
             </div>
@@ -1162,7 +1164,7 @@
                     </div>
                     <div
                         style="display:flex;gap:28px;margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">
-                        <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">2.1k</b><br>Repo stars</div>
+                        <div><b id="github-stars-stat" style="color:var(--ink);font-size:18px;font-family:'Geist'">2.1k</b><br>Repo stars</div>
                         <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">289</b><br>Public repos
                         </div>
                         <div><b style="color:var(--ink);font-size:18px;font-family:'Geist'">209</b><br>GH followers
@@ -1609,8 +1611,11 @@ export default () => {
         const heroInstallCopyButton = document.getElementById("hero-install-copy")
         const heroInstallCopyIcon = document.getElementById("hero-install-copy-icon")
         const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
+        const githubStarsNav = document.getElementById("github-stars-nav")
+        const githubStarsStat = document.getElementById("github-stars-stat")
         const installCommand = heroInstallCopyButton?.dataset.copyText ?? "npm install -g tscircuit"
         const playgroundUrl = "https://tscircuit.com/playground"
+        const githubRepoStarsApi = "https://api.github.com/repos/tscircuit/tscircuit"
         let installCopyResetTimeout = null
         const installCopyIcons = {
             idle: `
@@ -1734,6 +1739,43 @@ export default () => {
 
             if (focusTab) {
                 renderPanels[view]?.tab.focus()
+            }
+        }
+
+        const formatGitHubStarCount = (count) => {
+            if (!Number.isFinite(count)) return null
+            return `${Math.floor(count / 1000)}k`
+        }
+
+        const updateGitHubStarLabels = (label) => {
+            if (githubStarsNav) {
+                githubStarsNav.textContent = `★ ${label} on GitHub`
+            }
+
+            if (githubStarsStat) {
+                githubStarsStat.textContent = label
+            }
+        }
+
+        const loadGitHubStarCount = async () => {
+            try {
+                const response = await fetch(githubRepoStarsApi, {
+                    cache: "no-store",
+                    headers: {
+                        Accept: "application/vnd.github+json",
+                    },
+                })
+
+                if (!response.ok) return
+
+                const data = await response.json()
+                const label = formatGitHubStarCount(Number(data?.stargazers_count))
+
+                if (label) {
+                    updateGitHubStarLabels(label)
+                }
+            } catch (error) {
+                // Keep the fallback copy if GitHub is unavailable or the request is blocked.
             }
         }
 
@@ -1983,6 +2025,7 @@ export default () => {
             })
         })
         syncRenderTabs()
+        loadGitHubStarCount()
     </script>
 </body>
 
