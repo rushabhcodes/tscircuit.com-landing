@@ -319,7 +319,7 @@
 
         .media.contain video,
         .media.contain img {
-            object-fit: fill;
+            object-fit: contain;
         }
 
         /* PCB placeholder */
@@ -815,7 +815,7 @@
         .faq-item {
             border: 1.5px solid var(--ink);
             border-radius: 4px;
-            padding: 20px;
+            padding: 0;
             background: var(--paper);
             overflow: hidden;
         }
@@ -823,6 +823,9 @@
         .faq-item summary {
             list-style: none;
             cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -854,7 +857,7 @@
         }
 
         .faq-answer {
-            padding-top: 12px;
+            padding: 0 20px 20px;
             color: var(--ink-2);
             line-height: 1.65;
             font-size: 13px;
@@ -921,7 +924,7 @@
             border-radius: 4px;
             padding: 20px;
             background: var(--paper);
-            min-height: 300px;
+            min-height: 340px;
             display: flex;
             flex-direction: column;
         }
@@ -1135,7 +1138,7 @@
                     <span id="github-stars-nav">★ 2.1k on GitHub</span>
                 </a>
                 <a class="btn" href="https://tscircuit.com/login">Sign in</a>
-                <a class="btn primary" href="mailto:contact@tscircuit.com?subject=Book%20a%20demo">Book a demo →</a>
+                <a class="btn primary" href="https://cal.com/seveibar/tscircuit-demo?overlayCalendar=true">Book a demo →</a>
             </div>
         </div>
     </nav>
@@ -1274,10 +1277,10 @@
                     </div>
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">02 · AUTOROUTE</div>
-                        <h3 style="margin:8px 0 6px;font-size:18px">Autorouter in the cloud</h3>
+                        <h3 style="margin:8px 0 6px;font-size:18px">Real-time autorouting</h3>
                         <p style="margin:0;color:var(--ink-2);font-size:13px">Sub-second routing on 4-layer boards.
-                            Results
-                            pinned to your commit SHA.</p>
+                            Runs locally with LLM-compatible tweaking. 
+                        </p>
                         <div class="media" style="height:180px;margin-top:14px">
                             <video autoplay muted loop playsinline preload="metadata" aria-label="Autorouting demo">
                                 <source src="assets/autorouting_example.mp4" type="video/mp4">
@@ -1307,10 +1310,8 @@
                     </div>
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">05 · REVIEW</div>
-                        <h3 style="margin:8px 0 6px;font-size:18px">PR-native schematic review</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Visual diff of schematic + PCB right
-                            inside
-                            GitHub. Approvals, comments, rollback.</p>
+                        <h3 style="margin:8px 0 6px;font-size:18px">Visual Diffs Inside GitHub</h3>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">All the capabilities of version control tool works natively with tscircuit. Approvals, comments, rollback.</p>
                         <div class="media" style="height:180px;margin-top:14px">
                             <img src="assets/review.png" alt="PR-native schematic review screenshot">
                         </div>
@@ -1332,7 +1333,7 @@
                         <p style="margin:0;color:var(--ink-2);font-size:13px">Run analog simulations in your browser or
                             on
                             the command line via WebAssembly ngspice.</p>
-                        <div class="media contain" style="height:180px;margin-top:14px">
+                        <div class="media contain" style="height:180px;margin-top:14px;background-color: #f7f2ee;">
                             <img src="assets/analogsimulation.png" alt="Analog simulation view in tscircuit">
                         </div>
                     </div>
@@ -1342,7 +1343,7 @@
                         <p style="margin:6px 0 0;color:var(--ink-2);font-size:13px">Import your library anywhere. Enable
                             KiCad PCM to have every tscircuit package automatically serve components and subcircuits as
                             importable KiCad modules.</p>
-                        <div class="media contain" style="height:180px;margin-top:14px">
+                        <div class="media contain" style="height:180px;margin-top:14px;background-color: #363636;">
                             <img src="assets/import-kicad-library.png" alt="KiCad library import workflow in tscircuit">
                         </div>
                     </div>
