@@ -148,6 +148,53 @@
             color: var(--ink-2)
         }
 
+        .nav-links-desktop {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: none;
+            position: relative;
+            width: 100%;
+        }
+
+        .nav-menu summary {
+            list-style: none;
+        }
+
+        .nav-menu summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .nav-menu-toggle {
+            width: fit-content;
+        }
+
+        .nav-menu-panel {
+            display: grid;
+            gap: 4px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1.5px solid var(--ink);
+            border-radius: 4px;
+            background: var(--paper);
+        }
+
+        .nav-menu-panel a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 8px 10px;
+            border-radius: 3px;
+        }
+
+        .nav-menu-panel a:hover {
+            background: rgba(26, 26, 26, .06);
+        }
+
         .nav li a {
             color: inherit;
             text-decoration: none;
@@ -710,6 +757,23 @@
             overflow: hidden;
         }
 
+        .trust-strip-track {
+            display: flex;
+            gap: 40px;
+            flex: 1;
+            justify-content: space-around;
+            opacity: .7;
+            min-width: 0;
+        }
+
+        .trust-strip-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 40px;
+            min-width: max-content;
+        }
+
         /* Footer */
         .foot {
             padding: 40px clamp(24px, 6vw, 96px) 28px;
@@ -967,14 +1031,15 @@
             }
         }
 
-        @media (max-width: 820px) {
+        @media (max-width: 960px) {
             .nav {
                 padding: 16px 20px;
             }
 
             .nav-shell {
-                display: grid;
-                grid-template-columns: minmax(0, 1fr) auto;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 gap: 14px;
             }
@@ -983,18 +1048,31 @@
                 display: none;
             }
 
-            .nav-links {
-                grid-column: 1 / -1;
+            .nav-links.nav-links-desktop {
+                display: none;
             }
 
-            .nav ul {
-                width: 100%;
-                flex-wrap: nowrap;
-                overflow: auto;
-                padding-bottom: 4px;
+            .nav-actions .nav-menu {
+                display: inline-flex;
+                width: auto;
+                flex: 0 0 auto;
+                margin-left: 0;
+                position: static;
+            }
+
+            .nav-menu-toggle {
+                display: inline-flex;
+                align-items: center;
+            }
+
+            .nav-menu-toggle::after {
+                content: "▾";
+                font-size: 10px;
+                line-height: 1;
             }
 
             .nav-actions {
+                margin-left: auto;
                 justify-content: flex-end;
             }
 
@@ -1029,30 +1107,13 @@
 
         @media (max-width: 640px) {
             .nav-shell {
-                display: grid;
-                grid-template-columns: 1fr auto;
-                align-items: center;
                 gap: 10px;
-            }
-
-            .nav-links {
-                display: block;
-                grid-column: 1 / -1;
-                order: 3;
-            }
-
-            .nav ul {
-                width: 100%;
-                gap: 14px;
-                flex-wrap: nowrap;
-                overflow: auto;
-                padding-bottom: 4px;
             }
 
             .nav-actions {
                 width: auto;
                 display: flex;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 justify-content: flex-end;
                 gap: 8px;
             }
@@ -1062,8 +1123,62 @@
                 font-size: 11px;
             }
 
-            .nav-actions .btn.ghost {
+            .nav-actions > a.btn[href*="/login"] {
                 display: none;
+            }
+
+            .nav-actions > a.btn.ghost {
+                display: none;
+            }
+
+            .nav-actions .nav-menu-panel {
+                gap: 2px;
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                z-index: 20;
+                width: 100%;
+                box-sizing: border-box;
+                margin-top: 0;
+            }
+
+            .trust-strip {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .trust-strip > span {
+                width: 100%;
+                white-space: normal !important;
+                line-height: 1.4;
+            }
+
+            .trust-strip-track {
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                align-self: stretch;
+                padding-inline: 8px;
+                box-sizing: border-box;
+            }
+
+            .trust-strip-track {
+                animation: trust-strip-marquee 28s linear infinite;
+                width: max-content;
+                gap: 16px;
+            }
+
+            .trust-strip-group {
+                gap: 16px;
+            }
+
+            .trust-strip .hand {
+                font-size: 14px !important;
+                line-height: 1.1;
+                white-space: nowrap;
             }
 
             .hero-title {
@@ -1110,9 +1225,29 @@
                 font-size: 10px;
             }
 
-            .nav ul {
-                gap: 12px;
+            .nav-menu-panel a {
                 font-size: 11px;
+            }
+
+            .trust-strip .hand {
+                font-size: 13px !important;
+            }
+        }
+
+        @keyframes trust-strip-marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(calc(-50% - 12px));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .trust-strip-track {
+                animation: none;
+                transform: none;
             }
         }
 
@@ -1125,7 +1260,7 @@
     <nav class="nav" aria-label="Primary">
         <div class="shell nav-shell">
             <a class="logo" href="https://tscircuit.com"><span class="sq"></span>tscircuit</a>
-            <ul class="nav-links">
+            <ul class="nav-links nav-links-desktop">
                 <li><a href="https://tscircuit.com">Product</a></li>
                 <li><a href="https://tscircuit.com/playground">Playground</a></li>
                 <li><a href="https://docs.tscircuit.com/">Docs</a></li>
@@ -1139,6 +1274,17 @@
                 </a>
                 <a class="btn" href="https://tscircuit.com/login">Sign in</a>
                 <a class="btn primary" href="https://cal.com/seveibar/tscircuit-demo?overlayCalendar=true">Book a demo →</a>
+                <details class="nav-menu">
+                    <summary class="btn ghost nav-menu-toggle">Menu</summary>
+                    <div class="nav-menu-panel">
+                        <a href="https://tscircuit.com">Product</a>
+                        <a href="https://tscircuit.com/playground">Playground</a>
+                        <a href="https://docs.tscircuit.com/">Docs</a>
+                        <a href="https://tscircuit.com/trending">Gallery</a>
+                        <a href="https://tscircuit.com/about">About</a>
+                        <a href="https://tscircuit.com/login">Sign in</a>
+                    </div>
+                </details>
             </div>
         </div>
     </nav>
@@ -1224,13 +1370,23 @@
                 <span class="mono muted" style="font-size:11px;white-space:nowrap">Hardware teams building with
                     tscircuit
                     →</span>
-                <div style="display:flex;gap:40px;flex:1;justify-content:space-around;opacity:.7">
-                    <span class="hand" style="font-size:22px">◇ company</span>
-                    <span class="hand" style="font-size:22px">△ lab</span>
-                    <span class="hand" style="font-size:22px">○ robotics.co</span>
-                    <span class="hand" style="font-size:22px">▢ satellites</span>
-                    <span class="hand" style="font-size:22px">◈ wearable</span>
-                    <span class="hand" style="font-size:22px">※ industrial</span>
+                <div class="trust-strip-track">
+                    <div class="trust-strip-group">
+                        <span class="hand" style="font-size:22px">◇ company</span>
+                        <span class="hand" style="font-size:22px">△ lab</span>
+                        <span class="hand" style="font-size:22px">○ robotics.co</span>
+                        <span class="hand" style="font-size:22px">▢ satellites</span>
+                        <span class="hand" style="font-size:22px">◈ wearable</span>
+                        <span class="hand" style="font-size:22px">※ industrial</span>
+                    </div>
+                    <div class="trust-strip-group" aria-hidden="true">
+                        <span class="hand" style="font-size:22px">◇ company</span>
+                        <span class="hand" style="font-size:22px">△ lab</span>
+                        <span class="hand" style="font-size:22px">○ robotics.co</span>
+                        <span class="hand" style="font-size:22px">▢ satellites</span>
+                        <span class="hand" style="font-size:22px">◈ wearable</span>
+                        <span class="hand" style="font-size:22px">※ industrial</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1501,8 +1657,10 @@
                             the CLI and registry when you want repeatable workflows and shared components.</p>
                     </div>
                     <div class="closing-cta-actions">
-                        <a class="btn accent" href="https://tscircuit.com/playground">Open playground →</a>
-                        <a class="btn primary" href="https://tscircuit.com/trending">Browse trending boards</a>
+                        <button type="button" class="btn accent install-copy-btn"
+                            data-copy-text="npm install -g tscircuit" aria-label="Copy npm install -g tscircuit"
+                            title="Copy npm install -g tscircuit"><span>npm install -g tscircuit</span><span
+                                class="icon install-copy-icon" aria-hidden="true"></span></button>
                     </div>
                 </div>
             </div>
@@ -1609,15 +1767,15 @@ export default () => {
         const editorHighlightTrack = document.getElementById("hero-code-highlight-track")
         const renderStatus = document.getElementById("hero-render-status")
         const renderTabs = [...document.querySelectorAll(".render-tab")]
-        const heroInstallCopyButton = document.getElementById("hero-install-copy")
-        const heroInstallCopyIcon = document.getElementById("hero-install-copy-icon")
+        const installCopyButtons = [...document.querySelectorAll(".install-copy-btn")]
         const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
         const githubStarsNav = document.getElementById("github-stars-nav")
         const githubStarsStat = document.getElementById("github-stars-stat")
-        const installCommand = heroInstallCopyButton?.dataset.copyText ?? "npm install -g tscircuit"
+        const installCommand =
+            installCopyButtons[0]?.dataset.copyText ?? "npm install -g tscircuit"
         const playgroundUrl = "https://tscircuit.com/playground"
         const githubRepoStarsApi = "https://api.github.com/repos/tscircuit/tscircuit"
-        let installCopyResetTimeout = null
+        const installCopyResetTimeouts = new WeakMap()
         const installCopyIcons = {
             idle: `
                     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -1863,8 +2021,8 @@ export default () => {
             window.open(playgroundUrl, "_blank", "noopener,noreferrer")
         }
 
-        const setHeroInstallCopyState = (state) => {
-            if (!heroInstallCopyButton || !heroInstallCopyIcon) return
+        const setInstallCopyState = (button, icon, state) => {
+            if (!button || !icon) return
 
             const labels = {
                 idle: "Copy npm install -g tscircuit",
@@ -1872,9 +2030,9 @@ export default () => {
                 error: "Copy failed for npm install -g tscircuit",
             }
 
-            heroInstallCopyButton.setAttribute("aria-label", labels[state] ?? labels.idle)
-            heroInstallCopyButton.title = labels[state] ?? labels.idle
-            heroInstallCopyIcon.innerHTML = installCopyIcons[state] ?? installCopyIcons.idle
+            button.setAttribute("aria-label", labels[state] ?? labels.idle)
+            button.title = labels[state] ?? labels.idle
+            icon.innerHTML = installCopyIcons[state] ?? installCopyIcons.idle
         }
 
         const copyTextToClipboard = async (value) => {
@@ -1902,7 +2060,10 @@ export default () => {
         const debouncedPreviewUpdate = debounce(updatePreview, 350)
 
         editorInput.value = defaultHeroCode
-        setHeroInstallCopyState("idle")
+        installCopyButtons.forEach((button) => {
+            const icon = button.querySelector(".install-copy-icon")
+            setInstallCopyState(button, icon, "idle")
+        })
         syncEditor()
         updatePreview()
 
@@ -1917,18 +2078,25 @@ export default () => {
         editorInput.addEventListener("blur", () => {
             editorShell.classList.remove("focused")
         })
-        heroInstallCopyButton?.addEventListener("click", async () => {
-            try {
-                await copyTextToClipboard(installCommand)
-                setHeroInstallCopyState("success")
-            } catch (error) {
-                setHeroInstallCopyState("error")
-            }
+        installCopyButtons.forEach((button) => {
+            const icon = button.querySelector(".install-copy-icon")
 
-            window.clearTimeout(installCopyResetTimeout)
-            installCopyResetTimeout = window.setTimeout(() => {
-                setHeroInstallCopyState("idle")
-            }, 1800)
+            button.addEventListener("click", async () => {
+                try {
+                    await copyTextToClipboard(installCommand)
+                    setInstallCopyState(button, icon, "success")
+                } catch (error) {
+                    setInstallCopyState(button, icon, "error")
+                }
+
+                window.clearTimeout(installCopyResetTimeouts.get(button))
+                installCopyResetTimeouts.set(
+                    button,
+                    window.setTimeout(() => {
+                        setInstallCopyState(button, icon, "idle")
+                    }, 1800)
+                )
+            })
         })
         editorInput.addEventListener("keydown", (event) => {
             const { selectionStart, selectionEnd, value } = editorInput
