@@ -341,7 +341,7 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: fit;
         }
 
         .media.contain {
@@ -1245,7 +1245,6 @@
         <div class="shell nav-shell">
             <a class="logo" href="https://tscircuit.com"><span class="sq"></span>tscircuit</a>
             <ul class="nav-links nav-links-desktop">
-                <li><a href="https://tscircuit.com">Product</a></li>
                 <li><a href="https://tscircuit.com/playground">Playground</a></li>
                 <li><a href="https://docs.tscircuit.com/">Docs</a></li>
                 <li><a href="https://tscircuit.com/trending">Gallery</a></li>
@@ -1268,7 +1267,6 @@
                 <details class="nav-menu">
                     <summary class="btn ghost nav-menu-toggle">Menu</summary>
                     <div class="nav-menu-panel">
-                        <a href="https://tscircuit.com">Product</a>
                         <a href="https://tscircuit.com/playground">Playground</a>
                         <a href="https://docs.tscircuit.com/">Docs</a>
                         <a href="https://tscircuit.com/trending">Gallery</a>
@@ -1341,11 +1339,11 @@
                         </div>
                         <div id="preview-panel-pcb" class="render-panel" role="tabpanel"
                             aria-labelledby="preview-tab-pcb" hidden>
-                            <img id="hero-render-image-pcb" alt="Live PCB render from svg.tscircuit.com">
+                            <img style="background-color: #000;" id="hero-render-image-pcb" alt="Live PCB render from svg.tscircuit.com">
                         </div>
                         <div id="preview-panel-schematic" class="render-panel" role="tabpanel"
                             aria-labelledby="preview-tab-schematic" hidden>
-                            <img id="hero-render-image-schematic" alt="Live schematic render from svg.tscircuit.com">
+                            <img style="background-color: #f7f2ee;" id="hero-render-image-schematic" alt="Live schematic render from svg.tscircuit.com">
                         </div>
                         <div id="preview-panel-3d" class="render-panel" role="tabpanel"
                             aria-labelledby="preview-tab-3d">
@@ -1429,18 +1427,21 @@
                         <p style="margin:0;color:var(--ink-2);font-size:13px">Sub-second routing on 4-layer boards.
                             Runs locally with LLM-compatible tweaking.
                         </p>
-                        <div class="media" style="height:180px;margin-top:14px">
+                        <div class="media" style="height:180px;margin-top:14px;background-color: #fff;">
                             <video autoplay muted loop playsinline preload="metadata" aria-label="Autorouting demo">
-                                <source src="assets/autorouting_example.mp4" type="video/mp4">
+                                <source src="assets/autorouting_animation.mov" type="video/mp4">
                             </video>
                         </div>
                     </div>
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">03 · AI</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">AI coding skills for hardware</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Give Claude Code and custom agents a
-                            tscircuit
-                            skill with the CLI, syntax, workflow, and pre-fab context they need to make useful changes.
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Give Claude Code, Codex, or custom agents
+                            the
+                            <a href="https://github.com/tscircuit/skill" target="_blank" rel="noreferrer"
+                                style="color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;font-weight:500">tscircuit
+                                skill</a>
+                            with the CLI, syntax, workflow, and pre-fab context they need to make useful changes.
                         </p>
                         <div class="media" style="height:180px;margin-top:14px">
                             <img src="assets/example_ai_coding.png" alt="AI coding example for tscircuit">
@@ -1468,9 +1469,11 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">06 · OSS</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">Open &amp; forkable</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">MIT licensed. 10,000+ footprints in
-                            registry.
-                            Contribute yours back.</p>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">Open source under MIT. Explore the
+                            <a href="https://github.com/tscircuit" target="_blank" rel="noreferrer"
+                                style="color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;font-weight:500">tscircuit
+                                GitHub org</a>, fork what you need, and build on top of it.
+                        </p>
                         <div class="media contain" style="height:180px;margin-top:14px">
                             <img src="https://api.star-history.com/chart?repos=tscircuit/tscircuit&type=date&legend=top-left"
                                 alt="Star history chart for tscircuit">
@@ -1479,9 +1482,13 @@
                     <div class="feature-card">
                         <div class="mono muted" style="font-size:10px;letter-spacing:.12em">07 · SIMULATION</div>
                         <h3 style="margin:8px 0 6px;font-size:18px">Analog Simulation</h3>
-                        <p style="margin:0;color:var(--ink-2);font-size:13px">Run analog simulations in your browser or
-                            on
-                            the command line via WebAssembly ngspice.</p>
+                        <p style="margin:0;color:var(--ink-2);font-size:13px">
+                            Run analog simulations with <a href="https://docs.tscircuit.com/command-line/tsci-simulate"
+                                target="_blank" rel="noreferrer"
+                                style="color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;font-weight:500">tsci simulate</a> on
+                            the command line or in the
+                            browser, backed by WebAssembly ngspice.
+                        </p>
                         <div class="media contain" style="height:180px;margin-top:14px;background-color: #f7f2ee;">
                             <img src="assets/analogsimulation.png" alt="Analog simulation view in tscircuit">
                         </div>
@@ -1685,6 +1692,9 @@
                             data-copy-text="npm install -g tscircuit" aria-label="Copy npm install -g tscircuit"
                             title="Copy npm install -g tscircuit"><span>npm install -g tscircuit</span><span
                                 class="icon install-copy-icon" aria-hidden="true"></span></button>
+                        <a class="btn" href="https://docs.tscircuit.com/intro/quickstart-cli">
+                            Quick Start →
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1800,7 +1810,10 @@ export default () => {
             installCopyButtons[0]?.dataset.copyText ?? "npm install -g tscircuit"
         const playgroundUrl = "https://tscircuit.com/playground"
         const githubRepoStarsApi = "https://api.github.com/repos/tscircuit/tscircuit"
+        const githubStarsFallbackCount = 2100
         const installCopyResetTimeouts = new WeakMap()
+        let githubStarsAnimationToken = 0
+        let currentGitHubStarCount = 1
         const installCopyIcons = {
             idle: `
                     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -1928,7 +1941,65 @@ export default () => {
 
         const formatGitHubStarCount = (count) => {
             if (!Number.isFinite(count)) return null
-            return `${Math.floor(count / 1000)}k`
+
+            if (count < 1000) {
+                return `${Math.floor(count)}`
+            }
+
+            const value = count / 1000
+            const rounded = value.toFixed(1)
+            return `${rounded.endsWith(".0") ? rounded.slice(0, -2) : rounded}k`
+        }
+
+        const formatGitHubStarCountTick = (count) => {
+            if (!Number.isFinite(count)) return null
+            return new Intl.NumberFormat("en-US").format(Math.floor(count))
+        }
+
+        const animateGitHubStarCount = (
+            targetCount,
+            { duration = 2200, startCount = currentGitHubStarCount } = {}
+        ) => {
+            if (!Number.isFinite(targetCount)) return
+
+            const animationToken = ++githubStarsAnimationToken
+
+            if (targetCount <= startCount) {
+                const label = formatGitHubStarCount(targetCount)
+                if (label) updateGitHubStarLabels(label)
+                currentGitHubStarCount = targetCount
+                return
+            }
+
+            const startTime = performance.now()
+
+            const frame = (now) => {
+                if (animationToken !== githubStarsAnimationToken) {
+                    return
+                }
+
+                const progress = Math.min((now - startTime) / duration, 1)
+                const easedProgress = 1 - Math.pow(1 - progress, 3)
+                const currentCount =
+                    startCount + (targetCount - startCount) * easedProgress
+                currentGitHubStarCount = currentCount
+                const label =
+                    progress < 1
+                        ? formatGitHubStarCountTick(currentCount)
+                        : formatGitHubStarCount(currentCount)
+
+                if (label) {
+                    updateGitHubStarLabels(label)
+                }
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(frame)
+                } else {
+                    currentGitHubStarCount = targetCount
+                }
+            }
+
+            window.requestAnimationFrame(frame)
         }
 
         const updateGitHubStarLabels = (label) => {
@@ -1953,13 +2024,11 @@ export default () => {
                 if (!response.ok) return
 
                 const data = await response.json()
-                const label = formatGitHubStarCount(Number(data?.stargazers_count))
-
-                if (label) {
-                    updateGitHubStarLabels(label)
-                }
+                animateGitHubStarCount(Number(data?.stargazers_count), {
+                    startCount: currentGitHubStarCount,
+                })
             } catch (error) {
-                // Keep the fallback copy if GitHub is unavailable or the request is blocked.
+                // Leave the labels empty if GitHub is unavailable or the request is blocked.
             }
         }
 
@@ -2219,6 +2288,10 @@ export default () => {
             })
         })
         syncRenderTabs()
+        animateGitHubStarCount(githubStarsFallbackCount, {
+            startCount: currentGitHubStarCount,
+            duration: 1800,
+        })
         loadGitHubStarCount()
     </script>
 </body>
