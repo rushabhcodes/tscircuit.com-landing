@@ -1145,7 +1145,12 @@
         }
 
         .playground-media {
-            height: 280px;
+            aspect-ratio: 16 / 9;
+            height: auto;
+        }
+
+        .playground-media img {
+            object-fit: contain;
         }
 
         .closing-section {
@@ -1285,7 +1290,7 @@
             }
 
             .playground-grid .media {
-                height: 220px !important;
+                height: auto;
             }
 
             .foot-shell {
