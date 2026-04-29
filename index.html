@@ -2175,53 +2175,22 @@ export default function UsbAudioVuMeter() {
         const getStoredSession = () =>
             parseSessionStore()?.state?.session ?? null
 
-        const clearStoredSession = () => {
-            const sessionStore = parseSessionStore()
-
-            if (!sessionStore) {
-                window.localStorage.removeItem(sessionStoreKey)
-                return
-            }
-
-            sessionStore.state = {
-                ...sessionStore.state,
-                session: null,
-            }
-
-            window.localStorage.setItem(sessionStoreKey, JSON.stringify(sessionStore))
-        }
-
         const syncAuthButtons = () => {
             const isLoggedIn = Boolean(getStoredSession())
 
             authButtons.forEach((button) => {
                 const loginHref =
                     button.dataset.loginHref || "https://tscircuit.com/login"
+                const dashboardHref =
+                    button.dataset.dashboardHref || "https://tscircuit.com/dashboard"
 
-                button.textContent = isLoggedIn ? "Sign out" : "Sign in"
-                button.href = isLoggedIn ? "#" : loginHref
-                button.dataset.authState = isLoggedIn ? "logged-in" : "logged-out"
+                button.textContent = isLoggedIn ? "Dashboard" : "Sign in"
+                button.href = isLoggedIn ? dashboardHref : loginHref
                 button.setAttribute(
                     "aria-label",
-                    isLoggedIn ? "Sign out of tscircuit" : "Sign in to tscircuit"
+                    isLoggedIn ? "Go to the tscircuit dashboard" : "Sign in to tscircuit"
                 )
             })
-        }
-
-        const handleAuthButtonClick = (event) => {
-            const button = event.currentTarget
-
-            if (!(button instanceof HTMLAnchorElement)) {
-                return
-            }
-
-            if (button.dataset.authState !== "logged-in") {
-                return
-            }
-
-            event.preventDefault()
-            clearStoredSession()
-            syncAuthButtons()
         }
 
         const getLineNumbers = (value) =>
@@ -2602,9 +2571,6 @@ export default function UsbAudioVuMeter() {
         syncEditor()
         updatePreview()
 
-        authButtons.forEach((button) => {
-            button.addEventListener("click", handleAuthButtonClick)
-        })
         editorInput.addEventListener("input", () => {
             hasUserEditedHeroCode = true
             syncEditor()
