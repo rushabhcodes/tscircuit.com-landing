@@ -244,6 +244,23 @@
             display: block;
         }
 
+        .btn.icon-btn {
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .nav-search {
+            opacity: .62;
+            transition: opacity .16s ease;
+        }
+
+        .nav-search:hover,
+        .nav-search:focus-visible {
+            opacity: 1;
+        }
+
         .btn .star-icon {
             width: 14px;
             height: 14px;
@@ -1545,6 +1562,15 @@
             </ul>
             <div class="grow"></div>
             <div class="nav-actions">
+                <a class="btn icon-btn nav-search" href="https://tscircuit.com/search" aria-label="Search" title="Search">
+                    <span class="icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="m20 20-3.5-3.5"></path>
+                        </svg>
+                    </span>
+                </a>
                 <a class="btn ghost" href="https://github.com/tscircuit/tscircuit">
                     <span class="star-icon" aria-hidden="true">
                         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -1563,6 +1589,7 @@
                     <div class="nav-menu-panel">
                         <a href="/quickstart">Editor</a>
                         <a href="/playground">Playground</a>
+                        <a href="https://tscircuit.com/search">Search</a>
                         <a href="https://docs.tscircuit.com/">Docs</a>
                         <a href="https://discord.com/invite/V7FGE5ZCbA">Discord</a>
                         <a href="https://github.com/tscircuit/tscircuit">GitHub</a>
