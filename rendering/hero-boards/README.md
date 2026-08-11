@@ -57,7 +57,7 @@ The checked-in GLBs were generated with the realistic board-surface output from
 They are the reproducible source inputs for Blender:
 
 - `rp2040-blue-soldermask.glb` — tscircuit RP2040 hero board, blue soldermask and white silkscreen
-- `gameboy.glb` — tscircuit Game Boy board
+- `gameboy.glb` — tscircuit Game Boy board, red soldermask and white silkscreen
 - `nrf52810.glb` — tscircuit nRF52810 board
 - `attiny85-arcade-keychain.glb` — [rushabhcodes/Attiny85-Arcade-Keychain](https://tscircuit.com/rushabhcodes/Attiny85-Arcade-Keychain#3d)
 
