@@ -2167,7 +2167,8 @@
                 <a class="landing-signin" id="nav-auth-button" href="/login" data-login-href="/login">
                     Sign in
                 </a>
-                <a class="landing-button landing-button-dark landing-nav-start" href="/quickstart">
+                <a class="landing-button landing-button-dark landing-nav-start"
+                    href="https://docs.tscircuit.com/guides/circuit-generation/generating-circuit-boards-with-ai">
                     Get Started <span class="landing-arrow" aria-hidden="true">→</span>
                 </a>
                 <details class="landing-nav-menu">
@@ -2189,11 +2190,12 @@
         <section class="landing-hero-shell" aria-labelledby="hero-title">
             <div class="landing-hero-main">
                 <div class="landing-hero-copy">
-                    <h1 id="hero-title">One Framework to<br>Design Production<br>PCBs in TypeScript</h1>
-                    <p>Version every board in git. Preview instantly, then let agents<br class="landing-desktop-break">
-                        iterate and ship production hardware.</p>
+                    <h1 id="hero-title">The #1 framework for AI-generated electronics.</h1>
+                    <p>Build real circuit boards with any AI.<br class="landing-desktop-break">
+                        Just tell your agent to &quot;use tscircuit&quot;</p>
                     <div class="landing-hero-actions">
-                        <a class="landing-button landing-button-dark" href="/quickstart">
+                        <a class="landing-button landing-button-dark"
+                            href="https://docs.tscircuit.com/guides/circuit-generation/generating-circuit-boards-with-ai">
                             Get Started <span class="landing-arrow" aria-hidden="true">→</span>
                         </a>
                         <a class="landing-button landing-button-plain" href="https://docs.tscircuit.com/">
@@ -2211,9 +2213,9 @@
             </div>
 
             <div class="landing-proof-panel">
-                <p><strong><span id="github-stars-stat">2.3k</span> GitHub stars</strong> power tscircuit's open-source<br>
-                    ecosystem. Across <strong>300+ public repos</strong> and nearly<br>
-                    <strong>400 contributors</strong> building hardware as code.
+                <p>tscircuit is a framework for AI to leverage TSX to build electronics.<br>
+                    Using tscircuit, AI achieves state-of-the-art physically-validated<br>
+                    electronics generation capabilities.
                 </p>
             </div>
 
@@ -2694,7 +2696,6 @@ export default function UsbAudioVuMeter() {
         const installCopyButtons = [...document.querySelectorAll(".install-copy-btn")]
         const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
         const githubStarsNav = document.getElementById("github-stars-nav")
-        const githubStarsStat = document.getElementById("github-stars-stat")
         const authButtons = [
             document.getElementById("nav-auth-button"),
             document.getElementById("nav-auth-button-mobile"),
@@ -2969,10 +2970,6 @@ export default function UsbAudioVuMeter() {
         const updateGitHubStarLabels = (label) => {
             if (githubStarsNav) {
                 githubStarsNav.textContent = `${label} on GitHub`
-            }
-
-            if (githubStarsStat) {
-                githubStarsStat.textContent = label
             }
         }
 
