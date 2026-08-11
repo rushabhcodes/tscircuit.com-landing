@@ -1551,42 +1551,30 @@
         .landing-brand {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            color: var(--ink);
-            font-size: 18px;
+            justify-content: center;
+            color: #ffffff;
+            background: #4b8bf4;
+            padding: 5px 7px;
+            border-radius: 5px;
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 16px;
             line-height: 1;
-            font-weight: 750;
-            letter-spacing: -.7px;
+            font-weight: 500;
+            letter-spacing: .01em;
             text-decoration: none;
             white-space: nowrap;
         }
 
-        .landing-brand-mark {
-            width: 17px;
-            height: 17px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            padding: 3px;
-            border-radius: 5px;
-            background: #090a0b;
-            transform: rotate(8deg);
-        }
-
-        .landing-brand-mark i {
-            display: block;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #ffffff;
-            box-shadow: 4px 0 0 -1px #ffffff, 0 4px 0 -1px #ffffff;
+        .landing-brand:hover {
+            color: #ffffff;
+            text-decoration: none;
         }
 
         .landing-nav-links {
             display: flex;
             align-items: center;
-            gap: 35px;
-            margin-left: 65px;
+            gap: 30px;
+            margin-left: 46px;
             font-size: 14px;
             line-height: 1;
             font-weight: 540;
@@ -1606,26 +1594,90 @@
 
         .landing-nav-links a:hover,
         .landing-signin:hover,
+        .landing-icon-action:hover,
+        .landing-github:hover,
         .landing-button-plain:hover {
             opacity: .58;
-        }
-
-        .landing-chevron {
-            width: 6px;
-            height: 6px;
-            margin-top: -3px;
-            border-right: 1.3px solid currentColor;
-            border-bottom: 1.3px solid currentColor;
-            transform: rotate(45deg);
         }
 
         .landing-nav-actions {
             margin-left: auto;
             display: flex;
             align-items: center;
-            gap: 31px;
+            gap: 14px;
             font-size: 14px;
             font-weight: 550;
+        }
+
+        .landing-icon-action,
+        .landing-github {
+            min-height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            border: 1px solid var(--line-2);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: opacity 160ms ease;
+        }
+
+        .landing-icon-action {
+            width: 34px;
+        }
+
+        .landing-icon-action svg,
+        .landing-github svg {
+            width: 15px;
+            height: 15px;
+            display: block;
+        }
+
+        .landing-github {
+            gap: 7px;
+            padding: 0 10px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .landing-nav-menu {
+            display: none;
+            position: relative;
+        }
+
+        .landing-nav-menu summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .landing-nav-menu summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .landing-nav-menu-panel {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            min-width: 180px;
+            display: grid;
+            gap: 2px;
+            padding: 8px;
+            border: 1px solid var(--line-2);
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0 16px 40px rgba(20, 24, 32, .13);
+        }
+
+        .landing-nav-menu-panel a {
+            padding: 9px 10px;
+            border-radius: 7px;
+            color: var(--ink);
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .landing-nav-menu-panel a:hover {
+            background: #f3f4f6;
         }
 
         .landing-arrow {
@@ -1678,6 +1730,7 @@
             border-left: 1px solid var(--line);
             border-right: 1px solid var(--line);
             position: relative;
+            overflow: clip;
             font-family: Arial, Helvetica, sans-serif;
         }
 
@@ -1863,7 +1916,7 @@
             }
 
             .landing-nav-actions {
-                gap: 20px;
+                gap: 12px;
                 font-size: 13px;
             }
 
@@ -1898,8 +1951,18 @@
             }
 
             .landing-nav-links,
-            .landing-signin {
+            .landing-signin,
+            .landing-icon-action,
+            .landing-github {
                 display: none;
+            }
+
+            .landing-nav-menu {
+                display: block;
+            }
+
+            .landing-nav-actions {
+                gap: 9px;
             }
 
             .landing-nav-start {
@@ -1957,6 +2020,19 @@
 
             .landing-nav-start {
                 padding: 0 13px;
+            }
+
+            .landing-brand {
+                font-size: 14px;
+                padding: 5px 7px;
+            }
+
+            .landing-nav-menu-panel {
+                position: fixed;
+                top: 62px;
+                left: 12px;
+                right: 12px;
+                min-width: 0;
             }
 
             .landing-nav-start .landing-arrow {
@@ -2067,24 +2143,45 @@
 <body>
     <header class="landing-header">
         <nav class="landing-nav" aria-label="Primary navigation">
-            <a class="landing-brand" href="/" aria-label="tscircuit home">
-                <span class="landing-brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                <span>tscircuit</span>
-            </a>
+            <a class="landing-brand" href="/" aria-label="tscircuit home">tscircuit</a>
             <div class="landing-nav-links">
                 <a href="/quickstart">Editor</a>
                 <a href="/playground">Playground</a>
-                <a href="https://docs.tscircuit.com/">Developers <span class="landing-chevron" aria-hidden="true"></span></a>
                 <a href="https://docs.tscircuit.com/">Docs</a>
-                <a href="/changelog">Changelog</a>
+                <a href="/join">Discord</a>
             </div>
             <div class="landing-nav-actions">
+                <a class="landing-icon-action" href="https://tscircuit.com/search" aria-label="Search" title="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-3.5-3.5"></path>
+                    </svg>
+                </a>
+                <a class="landing-github" href="https://github.com/tscircuit/tscircuit">
+                    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path d="M8 1.7 9.9 5.6l4.3.6-3.1 3 0.7 4.3L8 11.4 4.2 13.5l0.7-4.3-3.1-3 4.3-.6L8 1.7z"></path>
+                    </svg>
+                    <span id="github-stars-nav">2.1k on GitHub</span>
+                </a>
                 <a class="landing-signin" id="nav-auth-button" href="/login" data-login-href="/login">
-                    Sign In <span class="landing-arrow" aria-hidden="true">→</span>
+                    Sign in
                 </a>
                 <a class="landing-button landing-button-dark landing-nav-start" href="/quickstart">
                     Get Started <span class="landing-arrow" aria-hidden="true">→</span>
                 </a>
+                <details class="landing-nav-menu">
+                    <summary class="landing-button">Menu</summary>
+                    <div class="landing-nav-menu-panel">
+                        <a href="/quickstart">Editor</a>
+                        <a href="/playground">Playground</a>
+                        <a href="https://tscircuit.com/search">Search</a>
+                        <a href="https://docs.tscircuit.com/">Docs</a>
+                        <a href="https://discord.com/invite/V7FGE5ZCbA">Discord</a>
+                        <a href="https://github.com/tscircuit/tscircuit">GitHub</a>
+                        <a href="/login" id="nav-auth-button-mobile" data-login-href="/login">Sign in</a>
+                    </div>
+                </details>
             </div>
         </nav>
     </header>
