@@ -26,6 +26,7 @@
     <meta property="og:image:height" content="2000" />
     <meta name="twitter:image" content="https://tscircuit.com/assets/editor_example_1_more_square-2000w.webp" />
     <link rel="canonical" href="https://tscircuit.com" />
+    <link rel="preload" as="image" href="assets/hero-board-trio-real-3d.png" fetchpriority="high" />
     <!-- SEO_END -->
 
     <!-- SSR_START -->
@@ -37,14 +38,16 @@
         rel="stylesheet">
     <style>
         :root {
-            --paper: #FAF8F3;
-            --ink: #1A1A1A;
-            --ink-2: #3A3A3A;
-            --muted: #8A8680;
-            --line: #1A1A1A;
-            --line-2: #B8B4AC;
-            --accent: #C04545;
-            --hi: #FFF2A8;
+            --paper: #ffffff;
+            --ink: #08090a;
+            --ink-2: #4a5262;
+            --muted: #667085;
+            --line: #dfe3e8;
+            --line-2: #e7eaf0;
+            --accent: #25272d;
+            --hi: #f3e4a7;
+            --gold: #d7b56d;
+            --panel: #f4f6f8;
             --content-max: 1280px;
         }
 
@@ -62,7 +65,8 @@
         }
 
         body {
-            min-height: 100vh
+            min-height: 100vh;
+            overflow-x: hidden
         }
 
         .nav {
@@ -88,7 +92,7 @@
             font-weight: 500;
             font-size: 16px;
             letter-spacing: .01em;
-            background: #4B8BF4;
+            background: var(--accent);
             color: #fff;
             text-decoration: none;
             padding: 5px 5px;
@@ -348,7 +352,7 @@
             z-index: 2;
             font-size: 10px;
             color: var(--muted);
-            background: rgba(250, 248, 243, .92);
+            background: rgba(255, 255, 255, .92);
             padding: 0 4px;
             font-family: 'JetBrains Mono', monospace;
         }
@@ -372,8 +376,8 @@
 
         /* PCB placeholder */
         .pcb {
-            background: #0E2A1E;
-            color: #6FD48A;
+            background: #aeb8c6;
+            color: #ffffff;
             border: 1.5px solid var(--ink);
             border-radius: 4px;
             position: relative;
@@ -387,13 +391,13 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 20% 30%, #D4AF37 0 6px, transparent 7px),
-                radial-gradient(circle at 80% 25%, #D4AF37 0 6px, transparent 7px),
-                radial-gradient(circle at 30% 70%, #D4AF37 0 5px, transparent 6px),
-                radial-gradient(circle at 70% 75%, #D4AF37 0 5px, transparent 6px),
-                radial-gradient(circle at 50% 50%, rgba(111, 212, 138, .15) 0 30%, transparent 31%),
-                linear-gradient(90deg, transparent 0 48%, rgba(111, 212, 138, .3) 48% 52%, transparent 52%),
-                linear-gradient(0deg, transparent 0 48%, rgba(111, 212, 138, .3) 48% 52%, transparent 52%);
+                radial-gradient(circle at 20% 30%, var(--gold) 0 6px, transparent 7px),
+                radial-gradient(circle at 80% 25%, var(--gold) 0 6px, transparent 7px),
+                radial-gradient(circle at 30% 70%, var(--gold) 0 5px, transparent 6px),
+                radial-gradient(circle at 70% 75%, var(--gold) 0 5px, transparent 6px),
+                radial-gradient(circle at 50% 50%, rgba(215, 181, 109, .18) 0 30%, transparent 31%),
+                linear-gradient(90deg, transparent 0 48%, rgba(255, 255, 255, .34) 48% 52%, transparent 52%),
+                linear-gradient(0deg, transparent 0 48%, rgba(255, 255, 255, .34) 48% 52%, transparent 52%);
         }
 
         .pcb .tag {
@@ -416,7 +420,7 @@
 
         .gallery-board:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 24px rgba(192, 69, 69, .18);
+            box-shadow: 0 10px 24px rgba(41, 49, 62, .16);
             border-color: var(--accent);
         }
 
@@ -454,7 +458,7 @@
         }
 
         .gallery-board .board-name {
-            color: #F6FFF8;
+            color: #ffffff;
             font-size: 18px;
             line-height: 1.2;
             max-width: 180px;
@@ -469,7 +473,7 @@
         /* Code block */
         .code {
             background: #0E0E0E;
-            color: #D8D4CC;
+            color: #d7dce4;
             border-radius: 4px;
             border: 1.5px solid var(--ink);
             font-family: 'JetBrains Mono', monospace;
@@ -557,12 +561,12 @@
             overflow: auto;
             background: transparent;
             color: transparent;
-            caret-color: #F6F1E9;
+            caret-color: #ffffff;
             -webkit-text-fill-color: transparent;
         }
 
         .editor-input::selection {
-            background: rgba(159, 199, 232, .35);
+            background: rgba(174, 184, 198, .38);
         }
 
         .editor-input::-webkit-scrollbar,
@@ -585,41 +589,41 @@
         }
 
         .code .kw {
-            color: #E78B8B
+            color: #c5cfdf
         }
 
         .code .st {
-            color: #D4C07C
+            color: var(--gold)
         }
 
         .code .cm {
-            color: #7A8C7A;
+            color: #8792a6;
             font-style: italic
         }
 
         .code .fn {
-            color: #9FC7E8
+            color: #aebbd0
         }
 
         .code .tg {
-            color: #9FC7E8
+            color: #aebbd0
         }
 
         .code .at {
-            color: #D4C07C
+            color: var(--gold)
         }
 
         .code .nm {
-            color: #C9C2B5
+            color: #d7dce4
         }
 
         .code .n {
-            color: #E8B87A
+            color: #e3c883
         }
 
         .code .head {
             font-size: 9px;
-            color: #8A8680;
+            color: #8792a6;
             letter-spacing: .1em
         }
 
@@ -632,7 +636,7 @@
 
         .render-stage {
             background: #101112;
-            color: #D8D4CC;
+            color: #d7dce4;
             border: 1.5px solid var(--ink);
             border-radius: 4px;
             position: relative;
@@ -665,7 +669,7 @@
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, .12);
             background: rgba(16, 17, 18, .78);
-            color: #D8D4CC;
+            color: #d7dce4;
             font-size: 9px;
             letter-spacing: .08em;
             text-transform: uppercase;
@@ -731,7 +735,7 @@
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, .1);
             background: rgba(16, 17, 18, .82);
-            color: #B8B4AC;
+            color: #aeb8c6;
             font: inherit;
             font-size: 9px;
             letter-spacing: .08em;
@@ -740,8 +744,8 @@
         }
 
         .render-tab.active {
-            background: #F2EEE4;
-            border-color: #F2EEE4;
+            background: #ffffff;
+            border-color: #ffffff;
             color: #101112;
         }
 
@@ -809,8 +813,8 @@
         /* Footer */
         .foot {
             padding: 40px clamp(24px, 6vw, 96px) 28px;
-            background: #F2EEE4;
-            border-top: 1.5px solid var(--ink);
+            background: var(--panel);
+            border-top: 1px solid var(--line);
         }
 
         .foot-shell {
@@ -997,7 +1001,7 @@
             background:
                 linear-gradient(180deg, rgba(255, 255, 255, .45), rgba(255, 255, 255, .14)),
                 var(--paper);
-            box-shadow: 0 10px 28px rgba(26, 26, 26, .08);
+            box-shadow: 0 10px 28px rgba(41, 49, 62, .09);
         }
 
         .closing-cta-actions {
@@ -1058,11 +1062,11 @@
         }
 
         .feature-card> :last-child.is-sand {
-            background: #f7f2ee;
+            background: var(--panel);
         }
 
         .feature-card> :last-child.is-charcoal {
-            background: #363636;
+            background: var(--accent);
         }
 
         .feature-card .code {
@@ -1135,7 +1139,7 @@
         }
 
         .render-image-schematic {
-            background: #f7f2ee;
+            background: var(--panel);
         }
 
         #hero-render-image-3d {
@@ -1158,7 +1162,7 @@
         }
 
         .playground-section {
-            background: #F2EEE4;
+            background: var(--panel);
         }
 
         .playground-media {
@@ -1171,7 +1175,7 @@
         }
 
         .closing-section {
-            background: #F2EEE4;
+            background: var(--panel);
         }
 
         .closing-title {
@@ -1438,9 +1442,9 @@
 
             .foot-shell>div:not(:first-child) {
                 padding: 12px;
-                border: 1px solid rgba(26, 26, 26, .12);
+                border: 1px solid rgba(102, 112, 133, .18);
                 border-radius: 4px;
-                background: rgba(250, 248, 243, .64);
+                background: rgba(255, 255, 255, .72);
             }
 
             .foot h5 {
@@ -1525,6 +1529,572 @@
             }
         }
 
+        /* Seam-inspired tscircuit header and hero */
+        .landing-header {
+            height: 72px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(255, 255, 255, .97);
+            position: relative;
+            z-index: 20;
+        }
+
+        .landing-nav {
+            width: min(1218px, calc(100% - 48px));
+            height: 100%;
+            margin: 0 auto;
+            transform: translateX(18px);
+            display: flex;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .landing-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background: #4b8bf4;
+            padding: 5px 7px;
+            border-radius: 5px;
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1;
+            font-weight: 500;
+            letter-spacing: .01em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .landing-brand:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .landing-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-left: 46px;
+            font-size: 14px;
+            line-height: 1;
+            font-weight: 540;
+            letter-spacing: -.25px;
+        }
+
+        .landing-nav-links a,
+        .landing-signin {
+            min-height: 34px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--ink);
+            text-decoration: none;
+            transition: opacity 160ms ease;
+        }
+
+        .landing-nav-links a:hover,
+        .landing-signin:hover,
+        .landing-icon-action:hover,
+        .landing-github:hover,
+        .landing-button-plain:hover {
+            opacity: .58;
+        }
+
+        .landing-nav-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 14px;
+            font-weight: 550;
+        }
+
+        .landing-icon-action,
+        .landing-github {
+            min-height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            border: 1px solid var(--line-2);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: opacity 160ms ease;
+        }
+
+        .landing-icon-action {
+            width: 34px;
+        }
+
+        .landing-icon-action svg,
+        .landing-github svg {
+            width: 15px;
+            height: 15px;
+            display: block;
+        }
+
+        .landing-github {
+            gap: 7px;
+            padding: 0 10px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .landing-nav-menu {
+            display: none;
+            position: relative;
+        }
+
+        .landing-nav-menu summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .landing-nav-menu summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .landing-nav-menu-panel {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            min-width: 180px;
+            display: grid;
+            gap: 2px;
+            padding: 8px;
+            border: 1px solid var(--line-2);
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0 16px 40px rgba(20, 24, 32, .13);
+        }
+
+        .landing-nav-menu-panel a {
+            padding: 9px 10px;
+            border-radius: 7px;
+            color: var(--ink);
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .landing-nav-menu-panel a:hover {
+            background: #f3f4f6;
+        }
+
+        .landing-arrow {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 17px;
+            line-height: .7;
+            font-weight: 400;
+            transform: translateY(1px);
+        }
+
+        .landing-button {
+            min-height: 34px;
+            padding: 0 11px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        .landing-button-dark {
+            color: #ffffff;
+            background: var(--accent);
+            border: 1px solid #34363d;
+            box-shadow: 0 2px 5px rgba(15, 18, 25, .19);
+        }
+
+        .landing-button-dark:hover {
+            background: #111317;
+            box-shadow: 0 4px 12px rgba(15, 18, 25, .2);
+            transform: translateY(-1px);
+        }
+
+        .landing-nav-start {
+            min-width: 116px;
+        }
+
+        .landing-hero-shell {
+            width: min(1218px, calc(100% - 48px));
+            margin: 0 auto;
+            transform: translateX(18px);
+            border-left: 1px solid var(--line);
+            border-right: 1px solid var(--line);
+            position: relative;
+            overflow: clip;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .landing-hero-main {
+            height: 625px;
+            position: relative;
+            overflow: visible;
+            isolation: isolate;
+            background: #ffffff;
+        }
+
+        .landing-hero-copy {
+            position: relative;
+            z-index: 8;
+            padding-top: 106px;
+            margin-left: 65px;
+        }
+
+        .landing-hero-copy h1 {
+            margin: 0;
+            max-width: 670px;
+            color: var(--ink);
+            font-size: clamp(46px, 4.05vw, 56px);
+            line-height: 1.11;
+            letter-spacing: -.061em;
+            font-weight: 680;
+        }
+
+        .landing-hero-copy p {
+            margin: 27px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.55;
+            letter-spacing: -.31px;
+            font-weight: 520;
+        }
+
+        .landing-hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 23px;
+        }
+
+        .landing-hero-actions .landing-button-dark {
+            min-width: 116px;
+        }
+
+        .landing-button-plain {
+            padding-left: 11px;
+            padding-right: 7px;
+            box-shadow: none;
+        }
+
+        .landing-hero-art {
+            position: absolute;
+            z-index: 7;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .landing-board-halo {
+            position: absolute;
+            width: 650px;
+            height: 420px;
+            right: -22px;
+            top: 104px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(149, 160, 177, .17) 0%, rgba(191, 199, 211, .09) 42%, transparent 72%);
+            filter: blur(12px);
+        }
+
+        .landing-hero-board {
+            position: absolute;
+            width: 880px;
+            max-width: none;
+            height: auto;
+            right: -14px;
+            top: 10px;
+            display: block;
+            opacity: .99;
+            filter: contrast(1.045) saturate(1.035) drop-shadow(0 16px 10px rgba(41, 49, 62, .07)) drop-shadow(0 38px 29px rgba(41, 49, 62, .15));
+        }
+
+        .landing-proof-panel {
+            height: 211px;
+            position: relative;
+            z-index: 5;
+            border: 1px solid var(--line);
+            border-left: 0;
+            border-right: 0;
+            border-radius: 13px 13px 0 0;
+            background: radial-gradient(circle, rgba(182, 189, 200, .34) .8px, transparent .95px) 53% 0 / 8px 8px, linear-gradient(90deg, #ffffff 0%, #ffffff 51%, rgba(255, 255, 255, .78) 64%, rgba(255, 255, 255, .5) 100%);
+            overflow: hidden;
+        }
+
+        .landing-proof-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, .97) 42%, rgba(255, 255, 255, .2) 65%, rgba(255, 255, 255, .55) 100%);
+            pointer-events: none;
+        }
+
+        .landing-proof-panel p {
+            position: relative;
+            z-index: 2;
+            margin: 62px 0 0 65px;
+            color: #626b7e;
+            font-size: 19px;
+            line-height: 1.46;
+            letter-spacing: -.5px;
+            font-weight: 500;
+        }
+
+        .landing-proof-panel strong {
+            color: #121316;
+            font-weight: 680;
+        }
+
+        /* Carry the new palette through the existing landing-page sections. */
+        .section,
+        .trust-strip-section {
+            border-color: var(--line-2);
+        }
+
+        .feature-card,
+        .faq-item,
+        .media,
+        .code,
+        .render-stage,
+        .closing-cta-panel {
+            border-color: var(--line);
+        }
+
+        .feature-card,
+        .faq-item,
+        .closing-cta-panel {
+            background-color: #ffffff;
+        }
+
+        .btn {
+            border-color: var(--line);
+            background: #ffffff;
+        }
+
+        .btn.primary,
+        .btn.accent {
+            color: #ffffff;
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 1280px) {
+            .landing-nav,
+            .landing-hero-shell {
+                width: calc(100% - 32px);
+                transform: none;
+            }
+
+            .landing-nav-links {
+                gap: 22px;
+                margin-left: 40px;
+                font-size: 13px;
+            }
+
+            .landing-nav-actions {
+                gap: 12px;
+                font-size: 13px;
+            }
+
+            .landing-hero-copy {
+                margin-left: 50px;
+            }
+
+            .landing-hero-copy h1 {
+                font-size: clamp(46px, 4.25vw, 54px);
+            }
+
+            .landing-hero-board {
+                width: 800px;
+                right: -12px;
+                top: 24px;
+            }
+
+            .landing-board-halo {
+                width: 570px;
+                right: -12px;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .landing-header {
+                height: 70px;
+            }
+
+            .landing-nav,
+            .landing-hero-shell {
+                width: calc(100% - 24px);
+            }
+
+            .landing-nav-links,
+            .landing-signin,
+            .landing-icon-action,
+            .landing-github {
+                display: none;
+            }
+
+            .landing-nav-menu {
+                display: block;
+            }
+
+            .landing-nav-actions {
+                gap: 9px;
+            }
+
+            .landing-nav-start {
+                min-width: auto;
+                min-height: 36px;
+                font-size: 14px;
+            }
+
+            .landing-hero-main {
+                height: 760px;
+            }
+
+            .landing-hero-copy {
+                padding: 67px 32px 0;
+                margin: 0;
+            }
+
+            .landing-hero-copy h1 {
+                max-width: 720px;
+                font-size: clamp(42px, 7vw, 54px);
+            }
+
+            .landing-hero-copy p {
+                font-size: 17px;
+            }
+
+            .landing-hero-board {
+                width: min(760px, 92vw);
+                right: auto;
+                left: 50%;
+                top: 326px;
+                transform: translateX(-50%);
+            }
+
+            .landing-board-halo {
+                width: min(590px, 80vw);
+                height: 320px;
+                right: auto;
+                left: 50%;
+                top: 430px;
+                transform: translateX(-50%);
+            }
+
+            .landing-proof-panel p {
+                margin-left: 32px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .landing-nav,
+            .landing-hero-shell {
+                width: calc(100% - 16px);
+            }
+
+            .landing-nav-start {
+                padding: 0 13px;
+            }
+
+            .landing-brand {
+                font-size: 14px;
+                padding: 5px 7px;
+            }
+
+            .landing-nav-menu-panel {
+                position: fixed;
+                top: 62px;
+                left: 12px;
+                right: 12px;
+                min-width: 0;
+            }
+
+            .landing-nav-start .landing-arrow {
+                display: none;
+            }
+
+            .landing-hero-main {
+                height: 720px;
+            }
+
+            .landing-hero-copy {
+                padding: 48px 22px 0;
+            }
+
+            .landing-hero-copy h1 {
+                font-size: clamp(38px, 11vw, 48px);
+                line-height: 1.06;
+                letter-spacing: -.065em;
+            }
+
+            .landing-hero-copy p {
+                margin-top: 23px;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .landing-desktop-break {
+                display: none;
+            }
+
+            .landing-hero-actions {
+                margin-top: 22px;
+                gap: 6px;
+            }
+
+            .landing-hero-actions .landing-button {
+                min-width: auto;
+                padding: 0 11px;
+                font-size: 14px;
+            }
+
+            .landing-hero-board {
+                width: min(650px, 118vw);
+                top: 336px;
+            }
+
+            .landing-board-halo {
+                width: min(480px, 92vw);
+                height: 240px;
+                top: 456px;
+            }
+
+            .landing-proof-panel {
+                height: 230px;
+            }
+
+            .landing-proof-panel p {
+                margin: 52px 22px 0;
+                font-size: 16px;
+                line-height: 1.58;
+                letter-spacing: -.35px;
+            }
+
+        }
+
+        @media (max-width: 420px) {
+            .landing-hero-copy {
+                padding-top: 42px;
+            }
+
+            .landing-hero-copy h1 {
+                font-size: clamp(34px, 9.2vw, 36px);
+                line-height: 1.07;
+            }
+
+            .landing-hero-copy p {
+                font-size: 15px;
+            }
+        }
+
         /* Direction-specific sections load below */
     </style>
 
@@ -1550,132 +2120,82 @@
 </head>
 
 <body>
-    <!-- nav -->
-    <nav class="nav" aria-label="Primary">
-        <div class="shell nav-shell">
-            <a class="logo" href="/"><span class="sq"></span>tscircuit</a>
-            <ul class="nav-links nav-links-desktop">
-                <li><a href="/quickstart">Editor</a></li>
-                <li><a href="/playground">Playground</a></li>
-                <li><a href="https://docs.tscircuit.com/">Docs</a></li>
-                <li><a href="/join">Discord</a></li>
-            </ul>
-            <div class="grow"></div>
-            <div class="nav-actions">
-                <a class="btn icon-btn nav-search" href="https://tscircuit.com/search" aria-label="Search" title="Search">
-                    <span class="icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="11" cy="11" r="7"></circle>
-                            <path d="m20 20-3.5-3.5"></path>
-                        </svg>
-                    </span>
+    <header class="landing-header">
+        <nav class="landing-nav" aria-label="Primary navigation">
+            <a class="landing-brand" href="/" aria-label="tscircuit home">tscircuit</a>
+            <div class="landing-nav-links">
+                <a href="/quickstart">Editor</a>
+                <a href="/playground">Playground</a>
+                <a href="https://docs.tscircuit.com/">Docs</a>
+                <a href="/join">Discord</a>
+            </div>
+            <div class="landing-nav-actions">
+                <a class="landing-icon-action" href="https://tscircuit.com/search" aria-label="Search" title="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-3.5-3.5"></path>
+                    </svg>
                 </a>
-                <a class="btn ghost" href="https://github.com/tscircuit/tscircuit">
-                    <span class="star-icon" aria-hidden="true">
-                        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                            <path d="M8 1.7 9.9 5.6l4.3.6-3.1 3 0.7 4.3L8 11.4 4.2 13.5l0.7-4.3-3.1-3 4.3-.6L8 1.7z">
-                            </path>
-                        </svg>
-                    </span>
+                <a class="landing-github" href="https://github.com/tscircuit/tscircuit">
+                    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path d="M8 1.7 9.9 5.6l4.3.6-3.1 3 0.7 4.3L8 11.4 4.2 13.5l0.7-4.3-3.1-3 4.3-.6L8 1.7z"></path>
+                    </svg>
                     <span id="github-stars-nav">2.1k on GitHub</span>
                 </a>
-                <a class="btn" id="nav-auth-button" href="/login"
-                    data-login-href="/login">Sign in</a>
-                <a class="btn primary" href="https://cal.com/seveibar/tscircuit-demo?overlayCalendar=true">Book a demo
-                    →</a>
-                <details class="nav-menu">
-                    <summary class="btn ghost nav-menu-toggle">Menu</summary>
-                    <div class="nav-menu-panel">
+                <a class="landing-signin" id="nav-auth-button" href="/login" data-login-href="/login">
+                    Sign in
+                </a>
+                <a class="landing-button landing-button-dark landing-nav-start"
+                    href="https://docs.tscircuit.com/guides/circuit-generation/generating-circuit-boards-with-ai">
+                    Get Started <span class="landing-arrow" aria-hidden="true">→</span>
+                </a>
+                <details class="landing-nav-menu">
+                    <summary class="landing-button">Menu</summary>
+                    <div class="landing-nav-menu-panel">
                         <a href="/quickstart">Editor</a>
                         <a href="/playground">Playground</a>
                         <a href="https://tscircuit.com/search">Search</a>
                         <a href="https://docs.tscircuit.com/">Docs</a>
                         <a href="https://discord.com/invite/V7FGE5ZCbA">Discord</a>
                         <a href="https://github.com/tscircuit/tscircuit">GitHub</a>
-                        <a href="/login" id="nav-auth-button-mobile"
-                            data-login-href="/login">Sign in</a>
+                        <a href="/login" id="nav-auth-button-mobile" data-login-href="/login">Sign in</a>
                     </div>
                 </details>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
     <main id="main-content">
-        <!-- HERO: split code / PCB -->
-        <section class="section hero-section" aria-labelledby="hero-title">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="eyebrow">The hardware framework for AI teams</div>
-                    <h1 id="hero-title" class="hero-title">
-                        The #1 framework for <span class="hl">AI-generated</span> electronics.
-                    </h1>
-                    <p class="hero-sub">
-                        Design production PCBs in TypeScript. Version them in git. Let agents iterate on them.
-                    </p>
-                    <div class="hero-actions">
-                        <button type="button" class="btn accent install-copy-btn" id="hero-install-copy"
-                            data-copy-text="npm install -g tscircuit" aria-label="Copy npm install -g tscircuit"
-                            title="Copy npm install -g tscircuit"><span>npm install -g tscircuit</span><span
-                                id="hero-install-copy-icon" class="icon install-copy-icon"
-                                aria-hidden="true"></span></button>
-                        <a class="btn" href="https://docs.tscircuit.com/">Read the docs →</a>
-                        <a class="mono muted hero-shortcut" id="hero-browser-shortcut"
-                            href="/playground" target="_blank" rel="noreferrer"
-                            aria-keyshortcuts="Meta+K Control+K">⌘K to try in browser</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div><b id="github-stars-stat" class="hero-stat-value">2.1k</b><br>Repo stars</div>
-                        <div><b class="hero-stat-value">304</b><br>Public repos
-                        </div>
-                        <div><b class="hero-stat-value">397</b><br>Contributors
-                        </div>
+        <section class="landing-hero-shell" aria-labelledby="hero-title">
+            <div class="landing-hero-main">
+                <div class="landing-hero-copy">
+                    <h1 id="hero-title">The #1 framework for AI-generated electronics.</h1>
+                    <p>Build real circuit boards with any AI.<br class="landing-desktop-break">
+                        Just tell your agent to &quot;use tscircuit&quot;</p>
+                    <div class="landing-hero-actions">
+                        <a class="landing-button landing-button-dark"
+                            href="https://docs.tscircuit.com/guides/circuit-generation/generating-circuit-boards-with-ai">
+                            Get Started <span class="landing-arrow" aria-hidden="true">→</span>
+                        </a>
+                        <a class="landing-button landing-button-plain" href="https://docs.tscircuit.com/">
+                            Read the Docs <span class="landing-arrow" aria-hidden="true">→</span>
+                        </a>
                     </div>
                 </div>
-                <div class="hero-stack">
-                    <div class="code editor-shell">
-                        <div class="editor-body">
-                            <pre id="hero-code-gutter" class="editor-gutter"
-                                aria-hidden="true"><span id="hero-code-gutter-track" class="editor-gutter-track"></span></pre>
-                            <div class="editor-pane">
-                                <pre id="hero-code-highlight" class="editor-layer"
-                                    aria-hidden="true"><span id="hero-code-highlight-track" class="editor-highlight-track"></span></pre>
-                                <textarea id="hero-code-input" class="editor-input" spellcheck="false"
-                                    autocapitalize="off" autocomplete="off" autocorrect="off"
-                                    aria-label="Editable tscircuit code sample"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="render-stage render-stage-full">
-                        <span id="hero-render-status" class="status" role="status" aria-live="polite">syncing</span>
-                        <div class="render-tabs" role="tablist" aria-label="Preview view">
-                            <button type="button" class="render-tab active" id="preview-tab-pcb" data-view="pcb"
-                                role="tab" aria-selected="true" aria-controls="preview-panel-pcb"
-                                tabindex="0">PCB</button>
-                            <button type="button" class="render-tab" id="preview-tab-schematic" data-view="schematic"
-                                role="tab" aria-selected="false" aria-controls="preview-panel-schematic"
-                                tabindex="-1">SCH</button>
-                            <button type="button" class="render-tab" id="preview-tab-3d" data-view="3d" role="tab"
-                                aria-selected="false" aria-controls="preview-panel-3d" tabindex="-1">3D</button>
-                        </div>
-                        <div id="preview-panel-pcb" class="render-panel" role="tabpanel"
-                            aria-labelledby="preview-tab-pcb">
-                            <img class="render-image-pcb" id="hero-render-image-pcb"
-                                src="assets/hero-stm32f746g-disco-pcb.png"
-                                alt="Live PCB render from svg.tscircuit.com">
-                        </div>
-                        <div id="preview-panel-schematic" class="render-panel" role="tabpanel"
-                            aria-labelledby="preview-tab-schematic" hidden>
-                            <img class="render-image-schematic" id="hero-render-image-schematic"
-                                src="assets/hero-stm32f746g-disco-schematic.png"
-                                alt="Live schematic render from svg.tscircuit.com">
-                        </div>
-                        <div id="preview-panel-3d" class="render-panel" role="tabpanel" aria-labelledby="preview-tab-3d"
-                            hidden>
-                            <img id="hero-render-image-3d" src="assets/hero-stm32f746g-disco-3d.png"
-                                alt="Live 3D render from svg.tscircuit.com">
-                        </div>
-                    </div>
+
+                <div class="landing-hero-art" aria-label="Three real circuit boards generated from tscircuit projects">
+                    <span class="landing-board-halo" aria-hidden="true"></span>
+                    <img class="landing-hero-board" src="assets/hero-board-trio-real-3d.png"
+                        alt="3D renders of the tscircuit RP2040, Game Boy, and nRF52810 circuit boards"
+                        width="1600" height="1500" fetchpriority="high">
                 </div>
+            </div>
+
+            <div class="landing-proof-panel">
+                <p>tscircuit is a <strong>TSX framework</strong> to enable AI to build electronics.<br>
+                    Using tscircuit, AI achieves <strong>state-of-the-art</strong> physically-validated<br>
+                    <strong>electronics generation capabilities</strong>.
+                </p>
             </div>
         </section>
 
@@ -1710,8 +2230,7 @@
         <!-- Feature grid -->
         <section class="section" aria-labelledby="features-title">
             <div class="feature-shell">
-                <div class="eyebrow">Why teams switch</div>
-                <h2 id="features-title">Everything your EE team needs, as code.</h2>
+                <h2 id="features-title">A fully-featured, ground-up electronic design tool built for AI</h2>
                 <p class="sub">Built for hardware startups who move at software speed. Every feature composable,
                     inspectable, diffable in a PR.</p>
 
@@ -2150,7 +2669,6 @@ export default function UsbAudioVuMeter() {
         const installCopyButtons = [...document.querySelectorAll(".install-copy-btn")]
         const heroBrowserShortcut = document.getElementById("hero-browser-shortcut")
         const githubStarsNav = document.getElementById("github-stars-nav")
-        const githubStarsStat = document.getElementById("github-stars-stat")
         const authButtons = [
             document.getElementById("nav-auth-button"),
             document.getElementById("nav-auth-button-mobile"),
@@ -2426,10 +2944,6 @@ export default function UsbAudioVuMeter() {
             if (githubStarsNav) {
                 githubStarsNav.textContent = `${label} on GitHub`
             }
-
-            if (githubStarsStat) {
-                githubStarsStat.textContent = label
-            }
         }
 
         const loadGitHubStarCount = async () => {
@@ -2624,25 +3138,29 @@ export default function UsbAudioVuMeter() {
 
         const debouncedPreviewUpdate = debounce(updatePreview, 350)
 
-        editorInput.value = defaultHeroCode
+        if (editorInput) {
+            editorInput.value = defaultHeroCode
+        }
         syncAuthButtons()
         installCopyButtons.forEach((button) => {
             const icon = button.querySelector(".install-copy-icon")
             setInstallCopyState(button, icon, "idle")
         })
-        syncEditor()
-        updatePreview()
+        if (editorInput) {
+            syncEditor()
+            updatePreview()
+        }
 
-        editorInput.addEventListener("input", () => {
+        editorInput?.addEventListener("input", () => {
             hasUserEditedHeroCode = true
             syncEditor()
             debouncedPreviewUpdate()
         })
-        editorInput.addEventListener("scroll", syncEditor)
-        editorInput.addEventListener("focus", () => {
+        editorInput?.addEventListener("scroll", syncEditor)
+        editorInput?.addEventListener("focus", () => {
             editorShell.classList.add("focused")
         })
-        editorInput.addEventListener("blur", () => {
+        editorInput?.addEventListener("blur", () => {
             editorShell.classList.remove("focused")
         })
         installCopyButtons.forEach((button) => {
@@ -2665,7 +3183,7 @@ export default function UsbAudioVuMeter() {
                 )
             })
         })
-        editorInput.addEventListener("keydown", (event) => {
+        editorInput?.addEventListener("keydown", (event) => {
             const { selectionStart, selectionEnd, value } = editorInput
 
             if (event.key === "Tab") {
@@ -2728,11 +3246,11 @@ export default function UsbAudioVuMeter() {
         window.addEventListener("focus", syncAuthButtons)
         window.addEventListener("pageshow", syncAuthButtons)
         Object.entries(renderPanels).forEach(([view, panelConfig]) => {
-            panelConfig.image.addEventListener("load", () => {
+            panelConfig.image?.addEventListener("load", () => {
                 if (currentView !== view) return
                 setRenderStatus(hasUserEditedHeroCode ? "live" : "ready", false)
             })
-            panelConfig.image.addEventListener("error", () => {
+            panelConfig.image?.addEventListener("error", () => {
                 if (currentView !== view) return
                 setRenderStatus("render error", true)
             })
