@@ -1851,24 +1851,6 @@
             font-weight: 680;
         }
 
-        .landing-peek-grid {
-            height: 124px;
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            border-bottom: 1px solid var(--line);
-            border-radius: 12px 12px 0 0;
-            overflow: hidden;
-        }
-
-        .landing-peek-grid span {
-            border-right: 1px solid var(--line);
-            background: rgba(255, 255, 255, .98);
-        }
-
-        .landing-peek-grid span:last-child {
-            border-right: 0;
-        }
-
         /* Carry the new palette through the existing landing-page sections. */
         .section,
         .trust-strip-section {
@@ -2096,9 +2078,6 @@
                 letter-spacing: -.35px;
             }
 
-            .landing-peek-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
         }
 
         @media (max-width: 420px) {
@@ -2213,15 +2192,10 @@
             </div>
 
             <div class="landing-proof-panel">
-                <p>tscircuit is a framework for AI to leverage TSX to build electronics.<br>
-                    Using tscircuit, AI achieves state-of-the-art physically-validated<br>
-                    electronics generation capabilities.
+                <p>tscircuit is a <strong>TSX framework</strong> to enable AI to build electronics.<br>
+                    Using tscircuit, AI achieves <strong>state-of-the-art</strong> physically-validated<br>
+                    <strong>electronics generation capabilities</strong>.
                 </p>
-            </div>
-
-            <div class="landing-peek-grid" aria-hidden="true">
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
             </div>
         </section>
 
