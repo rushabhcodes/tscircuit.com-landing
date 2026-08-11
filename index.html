@@ -786,6 +786,11 @@
             margin: 0 0 28px
         }
 
+        .feature-intro {
+            max-width: calc(100% - 114px);
+            margin-left: 114px;
+        }
+
         .trust-strip {
             display: flex;
             align-items: center;
@@ -1885,6 +1890,11 @@
         }
 
         @media (max-width: 1280px) {
+            .feature-intro {
+                max-width: 100%;
+                margin-left: 0;
+            }
+
             .landing-nav,
             .landing-hero-shell {
                 width: calc(100% - 32px);
@@ -1923,6 +1933,11 @@
         }
 
         @media (max-width: 980px) {
+            .feature-intro {
+                max-width: calc(100% - 24px);
+                margin-left: 24px;
+            }
+
             .landing-header {
                 height: 70px;
             }
@@ -1995,6 +2010,11 @@
         }
 
         @media (max-width: 620px) {
+            .feature-intro {
+                max-width: calc(100% - 10px);
+                margin-left: 10px;
+            }
+
             .landing-nav,
             .landing-hero-shell {
                 width: calc(100% - 16px);
@@ -2230,16 +2250,19 @@
         <!-- Feature grid -->
         <section class="section" aria-labelledby="features-title">
             <div class="feature-shell">
-                <h2 id="features-title">A fully-featured, ground-up electronic design tool built for AI</h2>
-                <p class="sub">Built for hardware startups who move at software speed. Every feature composable,
-                    inspectable, diffable in a PR.</p>
+                <div class="feature-intro">
+                    <h2 id="features-title">A fully-featured, ground-up reimagining of an electronic design tool built
+                        for AI</h2>
+                    <p class="sub">Built for hardware startups who move at software speed. Every feature composable,
+                        inspectable, diffable in a PR.</p>
+                </div>
 
                 <div class="row feature-grid">
                     <!-- feature card template -->
                     <div class="feature-card">
                         <div>
                             <div class="mono muted">01 · REACT</div>
-                            <h3>JSX components for circuits</h3>
+                            <h3>TSX components for circuits</h3>
                             <p>Compose boards the way you compose UI. Props, children, hooks — but for resistors.</p>
                         </div>
                         <div class="code">

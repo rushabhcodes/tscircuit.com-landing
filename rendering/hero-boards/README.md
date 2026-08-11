@@ -3,6 +3,9 @@
 This directory contains the complete Blender input scene as code and the four
 self-contained GLB models used to render the landing-page hero image.
 
+To regenerate or recolor those GLBs from Circuit JSON, follow
+[GLB_REGENERATION.md](GLB_REGENERATION.md).
+
 The composition intentionally uses a top-down orthographic camera. All four
 boards are imported into one Blender scene, so their transforms, lighting, and
 shadows are evaluated together. The render is written directly as a transparent
