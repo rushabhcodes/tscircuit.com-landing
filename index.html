@@ -1732,46 +1732,6 @@
             box-shadow: none;
         }
 
-        .landing-grid-line {
-            position: absolute;
-            z-index: 1;
-            display: block;
-            pointer-events: none;
-            background: var(--line);
-        }
-
-        .landing-grid-v-one {
-            width: 1px;
-            height: 100%;
-            top: 0;
-            left: 68.4%;
-        }
-
-        .landing-grid-v-two {
-            width: 1px;
-            height: 100%;
-            top: 0;
-            left: 84.2%;
-        }
-
-        .landing-grid-h-one {
-            width: 31.6%;
-            height: 1px;
-            top: 168px;
-            right: 0;
-        }
-
-        .landing-grid-path {
-            width: 131px;
-            height: 66px;
-            left: 58.1%;
-            top: 337px;
-            border-left: 1px solid var(--line);
-            border-top: 1px solid var(--line);
-            border-radius: 11px 0 0;
-            background: transparent;
-        }
-
         .landing-hero-art {
             position: absolute;
             z-index: 7;
@@ -1983,14 +1943,6 @@
                 transform: translateX(-50%);
             }
 
-            .landing-grid-v-one {
-                left: 64%;
-            }
-
-            .landing-grid-v-two {
-                left: 84%;
-            }
-
             .landing-proof-panel p {
                 margin-left: 32px;
                 font-size: 18px;
@@ -2055,11 +2007,6 @@
                 width: min(480px, 92vw);
                 height: 240px;
                 top: 456px;
-            }
-
-            .landing-grid-path,
-            .landing-grid-h-one {
-                display: none;
             }
 
             .landing-proof-panel {
@@ -2144,11 +2091,6 @@
     <main id="main-content">
         <section class="landing-hero-shell" aria-labelledby="hero-title">
             <div class="landing-hero-main">
-                <span class="landing-grid-line landing-grid-v-one" aria-hidden="true"></span>
-                <span class="landing-grid-line landing-grid-v-two" aria-hidden="true"></span>
-                <span class="landing-grid-line landing-grid-h-one" aria-hidden="true"></span>
-                <span class="landing-grid-line landing-grid-path" aria-hidden="true"></span>
-
                 <div class="landing-hero-copy">
                     <h1 id="hero-title">One Framework to<br>Design Production<br>PCBs in TypeScript</h1>
                     <p>Version every board in git. Preview instantly, then let agents<br class="landing-desktop-break">
