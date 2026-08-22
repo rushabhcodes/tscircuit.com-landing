@@ -786,9 +786,25 @@
             margin: 0 0 28px
         }
 
+        .feature-section {
+            padding-top: 88px;
+        }
+
         .feature-intro {
-            max-width: calc(100% - 114px);
-            margin-left: 114px;
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            gap: clamp(32px, 5vw, 72px);
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .feature-intro .sub {
+            margin-bottom: 0;
+        }
+
+        .feature-usage-video {
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 18px 48px rgba(41, 49, 62, .12);
         }
 
         .trust-strip {
@@ -1890,11 +1906,6 @@
         }
 
         @media (max-width: 1280px) {
-            .feature-intro {
-                max-width: 100%;
-                margin-left: 0;
-            }
-
             .landing-nav,
             .landing-hero-shell {
                 width: calc(100% - 32px);
@@ -1934,8 +1945,13 @@
 
         @media (max-width: 980px) {
             .feature-intro {
-                max-width: calc(100% - 24px);
-                margin-left: 24px;
+                grid-template-columns: 1fr;
+                gap: 32px;
+                margin-bottom: 40px;
+            }
+
+            .feature-section {
+                padding-top: 64px;
             }
 
             .landing-header {
@@ -2011,8 +2027,12 @@
 
         @media (max-width: 620px) {
             .feature-intro {
-                max-width: calc(100% - 10px);
-                margin-left: 10px;
+                gap: 24px;
+                margin-bottom: 32px;
+            }
+
+            .feature-section {
+                padding-top: 56px;
             }
 
             .landing-nav,
@@ -2248,13 +2268,22 @@
         -->
 
         <!-- Feature grid -->
-        <section class="section" aria-labelledby="features-title">
+        <section class="section feature-section" aria-labelledby="features-title">
             <div class="feature-shell">
                 <div class="feature-intro">
-                    <h2 id="features-title">A fully-featured, ground-up reimagining of an electronic design tool built
-                        for AI</h2>
-                    <p class="sub">Built for hardware startups who move at software speed. Every feature composable,
-                        inspectable, diffable in a PR.</p>
+                    <div class="feature-intro-copy">
+                        <h2 id="features-title">A fully-featured, ground-up reimagining of an electronic design tool
+                            built for AI</h2>
+                        <p class="sub">Built for hardware startups who move at software speed. Every feature composable,
+                            inspectable, diffable in a PR.</p>
+                    </div>
+                    <div class="media feature-usage-video">
+                        <video autoplay muted loop playsinline preload="metadata"
+                            poster="assets/tscircuit-usage-video-poster.png"
+                            aria-label="AI agent creating and inspecting electronics with tscircuit">
+                            <source src="assets/tscircuit-usage-video.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
 
                 <div class="row feature-grid">
