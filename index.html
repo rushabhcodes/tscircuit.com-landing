@@ -792,11 +792,10 @@
 
         .feature-intro {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
             gap: clamp(32px, 5vw, 72px);
             align-items: center;
-            max-width: calc(100% - 114px);
-            margin: 0 0 48px 114px;
+            margin-bottom: 48px;
         }
 
         .feature-intro .sub {
@@ -1907,11 +1906,6 @@
         }
 
         @media (max-width: 1280px) {
-            .feature-intro {
-                max-width: 100%;
-                margin-left: 0;
-            }
-
             .landing-nav,
             .landing-hero-shell {
                 width: calc(100% - 32px);
@@ -1953,8 +1947,6 @@
             .feature-intro {
                 grid-template-columns: 1fr;
                 gap: 32px;
-                max-width: calc(100% - 24px);
-                margin-left: 24px;
                 margin-bottom: 40px;
             }
 
@@ -2036,8 +2028,6 @@
         @media (max-width: 620px) {
             .feature-intro {
                 gap: 24px;
-                max-width: calc(100% - 10px);
-                margin-left: 10px;
                 margin-bottom: 32px;
             }
 
