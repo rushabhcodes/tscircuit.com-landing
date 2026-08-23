@@ -44,7 +44,9 @@
             --muted: #667085;
             --line: #dfe3e8;
             --line-2: #e7eaf0;
-            --accent: #25272d;
+            --accent: #4b8bf4;
+            --accent-hover: #326fd9;
+            --accent-soft: #eaf2ff;
             --hi: #f3e4a7;
             --gold: #d7b56d;
             --panel: #f4f6f8;
@@ -219,6 +221,12 @@
             background: var(--accent);
             color: var(--paper);
             border-color: var(--accent)
+        }
+
+        .btn.primary:hover,
+        .btn.accent:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
         .btn.ghost {
@@ -787,7 +795,7 @@
         }
 
         .feature-section {
-            padding: 96px clamp(24px, 4vw, 64px) 64px;
+            padding: 112px clamp(24px, 4vw, 64px) 80px;
         }
 
         .feature-section>.feature-shell {
@@ -797,14 +805,44 @@
         .feature-intro {
             display: grid;
             grid-template-columns: minmax(390px, .74fr) minmax(0, 1.26fr);
-            gap: clamp(36px, 2.5vw, 44px);
+            gap: clamp(44px, 3.5vw, 60px);
             align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: 96px;
+        }
+
+        .feature-intro-copy {
+            position: relative;
+        }
+
+        .feature-intro-copy::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            right: 16px;
+            width: 76px;
+            height: 34px;
+            border-top: 1px solid rgba(75, 139, 244, .48);
+            border-right: 1px solid rgba(75, 139, 244, .48);
+            border-radius: 0 12px 0 0;
+            pointer-events: none;
+        }
+
+        .feature-intro-copy::after {
+            content: "";
+            position: absolute;
+            top: -35px;
+            right: 9px;
+            width: 7px;
+            height: 7px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            background: #ffffff;
+            pointer-events: none;
         }
 
         .feature-intro-eyebrow {
             margin: 0 0 30px;
-            color: #59677e;
+            color: var(--accent-hover);
             font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
             line-height: 1.3;
@@ -814,7 +852,7 @@
         }
 
         .section .feature-intro h2 {
-            max-width: 560px;
+            max-width: 530px;
             margin: 0;
             font-size: clamp(42px, 3.2vw, 54px);
             line-height: 1.08;
@@ -849,21 +887,23 @@
             line-height: 1;
             font-weight: 650;
             text-decoration: none;
-            transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+            transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease, background 160ms ease;
         }
 
         .feature-intro-action-primary {
             min-width: 220px;
             padding: 0 34px;
             color: #ffffff;
-            background: #111317;
-            border: 1px solid #111317;
-            box-shadow: 0 3px 10px rgba(15, 18, 25, .16);
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            box-shadow: 0 3px 10px rgba(50, 111, 217, .24);
         }
 
         .feature-intro-action-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
             transform: translateY(-1px);
-            box-shadow: 0 7px 20px rgba(15, 18, 25, .2);
+            box-shadow: 0 7px 20px rgba(50, 111, 217, .28);
         }
 
         .feature-intro-action-secondary {
@@ -1185,7 +1225,7 @@
         }
 
         .feature-card {
-            border: 1.5px solid var(--ink);
+            border: 1.5px solid #d9dee7;
             border-radius: 4px;
             padding: 20px;
             background: var(--paper);
@@ -1193,11 +1233,22 @@
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
+            transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(75, 139, 244, .58);
+            box-shadow: 0 10px 24px rgba(50, 79, 128, .1);
         }
 
         .feature-card> :first-child {
             display: grid;
-            gap: 8px;
+            gap: 10px;
+        }
+
+        .feature-card> :first-child .mono.muted {
+            color: var(--accent-hover);
         }
 
         .feature-card> :first-child .mono {
@@ -1220,6 +1271,8 @@
         .feature-card> :last-child {
             margin-top: auto !important;
             height: 180px;
+            overflow: hidden;
+            border-radius: 4px;
         }
 
         .feature-card> :last-child.is-white {
@@ -1231,7 +1284,7 @@
         }
 
         .feature-card> :last-child.is-charcoal {
-            background: var(--accent);
+            background: #111317;
         }
 
         .feature-card .code {
@@ -1718,7 +1771,7 @@
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            background: #4b8bf4;
+            background: var(--accent);
             padding: 5px 7px;
             border-radius: 5px;
             font-family: 'Geist', system-ui, sans-serif;
@@ -1874,13 +1927,14 @@
         .landing-button-dark {
             color: #ffffff;
             background: var(--accent);
-            border: 1px solid #34363d;
-            box-shadow: 0 2px 5px rgba(15, 18, 25, .19);
+            border: 1px solid var(--accent);
+            box-shadow: 0 2px 5px rgba(50, 111, 217, .24);
         }
 
         .landing-button-dark:hover {
-            background: #111317;
-            box-shadow: 0 4px 12px rgba(15, 18, 25, .2);
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            box-shadow: 0 4px 12px rgba(50, 111, 217, .28);
             transform: translateY(-1px);
         }
 
@@ -2193,6 +2247,11 @@
         }
 
         @media (max-width: 620px) {
+            .feature-intro-copy::before,
+            .feature-intro-copy::after {
+                display: none;
+            }
+
             .feature-intro {
                 gap: 32px;
                 margin-bottom: 48px;
@@ -2634,8 +2693,7 @@
                         <div>
                             <div class="mono muted">08 · KICAD</div>
                             <h3>First Class KiCad Support</h3>
-                            <p>Import and export your library anywhere. Import KiCad files natively. Import your
-                                tscircuit packages directly into KiCad with native KiCad PCM support.</p>
+                            <p>Import and export KiCad libraries, files, and packages natively—with full PCM support.</p>
                         </div>
                         <div class="media contain is-charcoal">
                             <img src="assets/import-kicad-library.png" alt="KiCad library import workflow in tscircuit">
